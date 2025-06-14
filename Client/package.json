@@ -15,7 +15,7 @@
     "@react-three/fiber": "^9.1.2",
     "@tsparticles/react": "^3.0.0",
     "emailjs": "^4.0.3",
-    "framer-motion": "^12.6.5",
+    "framer-motion": "^12.18.1",
     "particles.js": "^2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

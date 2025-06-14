@@ -3,7 +3,6 @@ import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import './Projects.css';
 import ticketvideo from '../../assets/vedio/chennai museum.mp4';
 import quiz from '../../assets/vedio/AI Quiz.mp4';
-
 const projects = [
   {
     id: 1,

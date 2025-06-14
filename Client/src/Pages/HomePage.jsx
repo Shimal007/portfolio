@@ -13,6 +13,7 @@ import SectionWrapper from '../components/SectionWrapper/SectionWrapper';
 import './HomePage.css';
 import csd from '../assets/images/csd_2.jpg';
 import eie from '../assets/images/eie_1.jpg';
+
 const HomePage = ({ 
   textEnter, 
   textLeave, 
@@ -33,14 +34,14 @@ const HomePage = ({
       title: "CSD 24 Hour Hackathon 2nd Prize",
       description: "Built an Ayurveda Ecommerce Website with Chatbot for Assistance and won the CSD 24 Hackathon.",
       date: "March 2025",
-      image: csd // Replace with actual image path
+      image: csd
     },
     {
       id: 2,
-      title: "Project Presentation 1st Price",
-      description: "Presenta a project on Chatbot based Ticket Booking System and won the 1st prize.",
+      title: "Project Presentation 1st Prize",
+      description: "Presented a project on Chatbot based Ticket Booking System and won the 1st prize.",
       date: "February 2025",
-      image: eie// Replace with actual image path
+      image: eie
     }
   ];
 
@@ -52,15 +53,13 @@ const HomePage = ({
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Auto-slide effect
   useEffect(() => {
     const interval = setInterval(() => {
       nextAchievement();
-    }, 10000); // Change slide every 4 seconds
+    }, 10000);
 
-    // Clear interval on component unmount
     return () => clearInterval(interval);
-  }, [currentAchievement]); // Dependency on currentAchievement to restart interval if needed
+  }, [currentAchievement]);
 
   const nextAchievement = () => {
     setCurrentAchievement((prev) => (prev + 1) % achievements.length);
@@ -76,10 +75,6 @@ const HomePage = ({
 
   return (
     <div className="home-page">
-      {/* Starry Background */}
-      
-
-      {/* Home Section */}
       <SectionWrapper id="home" onVisible={() => handleSectionChange('home')}>
         <motion.div 
           className="home-section-container"
@@ -139,22 +134,21 @@ const HomePage = ({
                 >
                   Contact Me
                 </motion.a>
-<motion.a 
-  href="/resume.pdf" 
-  className="btn secondary"
-  onMouseEnter={buttonEnter}
-  onMouseLeave={buttonLeave}
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  download // This attribute triggers the download
->
-  Download Resume
-</motion.a>
+                <motion.a 
+                  href="/resume.pdf" 
+                  className="btn secondary"
+                  onMouseEnter={buttonEnter}
+                  onMouseLeave={buttonLeave}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  download
+                >
+                  Download Resume
+                </motion.a>
               </motion.div>
             </div>
 
-            {/* Achievements Slider */}
-            <div className="achievements-slider " style={{"margin-left":"50px"}}>
+            <div className="achievements-slider">
               <div className="slider-controls">
                 <motion.button 
                   onClick={prevAchievement} 
@@ -214,7 +208,6 @@ const HomePage = ({
         </motion.div>
       </SectionWrapper>
 
-      {/* About Section */}
       <SectionWrapper id="about" dark onVisible={() => handleSectionChange('about')}>
         <About 
           textEnter={textEnter} 
@@ -222,7 +215,6 @@ const HomePage = ({
         />
       </SectionWrapper>
 
-      {/* Skills Section */}
       <SectionWrapper id="skills" dark onVisible={() => handleSectionChange('skills')}>
         <Skills 
           textEnter={textEnter} 
@@ -230,7 +222,6 @@ const HomePage = ({
         />
       </SectionWrapper>
 
-      {/* Projects Section */}
       <SectionWrapper id="projects" onVisible={() => handleSectionChange('projects')}>
         <Projects 
           projectEnter={projectEnter}
@@ -240,7 +231,6 @@ const HomePage = ({
         />
       </SectionWrapper>
 
-      {/* Resume Section */}
       <SectionWrapper id="resume" dark onVisible={() => handleSectionChange('resume')}>
         <Resume 
           textEnter={textEnter} 
@@ -250,7 +240,6 @@ const HomePage = ({
         />
       </SectionWrapper>
 
-      {/* Contact Section */}
       <SectionWrapper id="contact" onVisible={() => handleSectionChange('contact')}>
         <Contact 
           textEnter={textEnter} 
