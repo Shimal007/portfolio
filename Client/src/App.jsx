@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import HomePage from './Pages/HomePage'
-import Navbar from './components/Navbar/Navbar'
-import StarBackground from './components/StarBackground'
-
-// Import the StarBackground component
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import HomePage from './Pages/HomePage';
+import Navbar from './components/Navbar/Navbar';
+import StarBackground from './components/StarBackground';
+import './LoadingAnimation.css'; // Create this new CSS file
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [activeSection, setActiveSection] = useState('home')
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    // Simulate loading assets
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+      setIsLoading(false);
+    }, 3000); // Increased to 3s to show the full animation
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="app">
-            <StarBackground />
+      <StarBackground />
       
       <AnimatePresence>
         {isLoading ? (
@@ -29,13 +29,68 @@ function App() {
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div
-              className="loading-spinner"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
+            <div className="loading-container">
+              {/* Animated gradient circle */}
+              <motion.div
+                className="gradient-circle"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 2,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "loop"
+                }}
+              />
+              
+              {/* Typing animation text */}
+              <motion.div
+                className="loading-text"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                <span className="name">Shimal Akmal D</span>
+                <motion.div
+                  className="typing-indicator"
+                  animate={{
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
+                  Loading Portfolio...
+                </motion.div>
+              </motion.div>
+              
+              {/* Progress bar */}
+              <motion.div 
+                className="progress-container"
+                initial={{ width: 0 }}
+                animate={{ width: "80%" }}
+                transition={{ 
+                  duration: 2.5,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.div
+                  className="progress-bar"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ 
+                    duration: 2.5,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+            </div>
           </motion.div>
         ) : (
           <>
@@ -50,7 +105,7 @@ function App() {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
