@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import './SectionWrapper.css'
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import './SectionWrapper.css';
 
 const SectionWrapper = ({ children, id, dark, onVisible }) => {
   useEffect(() => {
@@ -8,24 +8,24 @@ const SectionWrapper = ({ children, id, dark, onVisible }) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            onVisible()
+            onVisible();
           }
         },
-        { threshold: 0.5 }
-      )
+        { threshold: 0.3 } // Reduced threshold for mobile
+      );
       
-      const element = document.getElementById(id)
+      const element = document.getElementById(id);
       if (element) {
-        observer.observe(element)
+        observer.observe(element);
       }
       
       return () => {
         if (element) {
-          observer.unobserve(element)
+          observer.unobserve(element);
         }
-      }
+      };
     }
-  }, [id, onVisible])
+  }, [id, onVisible]);
 
   return (
     <section 
@@ -36,13 +36,13 @@ const SectionWrapper = ({ children, id, dark, onVisible }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }} // Reduced amount for mobile
         className="section-container"
       >
         {children}
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default SectionWrapper
+export default SectionWrapper;

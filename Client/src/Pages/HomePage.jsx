@@ -12,8 +12,7 @@ import Contact from '../components/Contact/Contact';
 import SectionWrapper from '../components/SectionWrapper/SectionWrapper';
 import './HomePage.css';
 import csd from '../assets/images/csd_2.jpg';
-import eie from '../assets/images/eie_1.jpg';
-
+import eie from '../assets/images/Eie_1.jpg';
 const HomePage = ({ 
   textEnter, 
   textLeave, 
@@ -135,15 +134,14 @@ const HomePage = ({
                   Contact Me
                 </motion.a>
                 <motion.a 
-                  href="/resume.pdf" 
+                  href="https://drive.google.com/file/d/1EZzRs3rhGvCutasnaGoi7KgFqKVYXtWt/view?usp=sharing" 
                   className="btn secondary"
                   onMouseEnter={buttonEnter}
                   onMouseLeave={buttonLeave}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  download
                 >
-                  Download Resume
+                  View Resume
                 </motion.a>
               </motion.div>
             </div>

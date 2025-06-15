@@ -1,15 +1,20 @@
 .tech-showcase {
   padding: 60px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh; /* Ensure the section takes up space */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .tech-section {
   margin-bottom: 80px;
+  width: 100%;
 }
 
 .section-title {
@@ -36,6 +41,7 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 30px;
   justify-items: center;
+  width: 100%;
 }
 
 .tech-card {
@@ -52,6 +58,7 @@
   position: relative;
   overflow: hidden;
   min-width: 160px;
+  box-sizing: border-box;
 }
 
 .tech-card::before {
@@ -154,6 +161,30 @@
   .tech-card {
     padding: 20px 15px;
     min-width: 130px;
+    backdrop-filter: none; /* Disable backdrop-filter on mobile */
+    background: rgba(255, 255, 255, 0.1); /* Slightly more opaque background for visibility */
+  }
+
+  /* Disable hover effects on mobile */
+  .tech-card:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  .tech-card:hover::before {
+    left: -100%;
+  }
+
+  .tech-card:hover .tech-icon {
+    transform: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .tech-card:hover .tech-name {
+    color: #ffffff;
+    text-shadow: none;
   }
 
   .tech-icon {
@@ -254,4 +285,12 @@
 
 .tech-card:nth-child(even) {
   animation: float 6s ease-in-out infinite 3s;
+}
+
+/* Disable float animation on mobile */
+@media (max-width: 768px) {
+  .tech-card:nth-child(odd),
+  .tech-card:nth-child(even) {
+    animation: none;
+  }
 }

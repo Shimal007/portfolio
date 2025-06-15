@@ -42,13 +42,12 @@ const Skills = ({ textEnter, textLeave }) => {
           className="section-title main-title" 
           onMouseEnter={textEnter} 
           onMouseLeave={textLeave}
-          style={{ textAlign: 'center',marginLeft:'35%',marginBottom:'5%' }}
         >
           Skill<span className="highlight">ss</span>
         </h2>
         <section className="tech-section">
           <h3 className="section-title">
-            Front<span className="highlight">end</span>
+            Front<span>end</span>
           </h3>
           <div className="tech-grid">
             {frontendTech.map((tech, index) => (
@@ -59,7 +58,7 @@ const Skills = ({ textEnter, textLeave }) => {
 
         <section className="tech-section">
           <h3 className="section-title">
-            Back<span className="highlight">end</span>
+            Back<span>end</span>
           </h3>
           <div className="tech-grid">
             {backendTech.map((tech, index) => (
@@ -70,7 +69,7 @@ const Skills = ({ textEnter, textLeave }) => {
 
         <section className="tech-section">
           <h3 className="section-title">
-            Platforms <span className="highlight">& Tools</span>
+            Platforms <span>& Tools</span>
           </h3>
           <div className="tech-grid">
             {platformsTools.map((tech, index) => (
