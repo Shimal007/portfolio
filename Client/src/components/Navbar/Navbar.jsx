@@ -31,10 +31,6 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       transition={{ duration: 0.5 }}
     >
       <div className="navbar-container">
-        <div className="navbar-logo">
-          <span style={{"marginLeft":"60px"}}>{"<Portfolio />"}</span>
-        </div>
-        
         <ul className="navbar-links">
           {navItems.map((item) => (
             <li key={item.id}>
