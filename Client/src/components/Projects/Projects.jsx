@@ -3,6 +3,7 @@ import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import './Projects.css';
 import ticketvideo from '../../assets/vedio/chennai museum.mp4';
 import quiz from '../../assets/vedio/AI Quiz.mp4';
+import app from '../../assets/vedio/app.mp4';
 const projects = [
   {
     id: 1,
@@ -12,17 +13,16 @@ const projects = [
     tags: ['React.js', 'Flask', 'MongoDB', 'Razorpay', 'LangChain', 'LLaMA 3'],
     video: ticketvideo,
     github: 'https://github.com/Sanjayraj-k/TicketBookingchatbot.git',
-    live: 'https://drive.google.com/drive/folders/1OOWh5aCHHF4S2SPqfTUkguF_ebY8Figg',
+    live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
   },
   {
-    id: 2,
-    title: 'AI Quiz Generator with Proctoring System',
-    description:
-      'An AI-powered quiz platform that generates questions from PDFs and auto-creates Google Forms for quizzes. Includes proctoring features like face tracking, tab switch detection, and speech monitoring. Built using React.js, Flask, MongoDB, and LLaMA 3 via LangChain.',
-    tags: ['React.js', 'Flask', 'MongoDB', 'LangChain', 'LangGraph', 'LLaMA 3', 'Google Forms', 'Computer Vision'],
+    id: 3,
+  title: "Fitness App with User Authentication",
+  description: "A mobile fitness application built with React Native, featuring user authentication via Firebase. Includes login, signup, and social login options (Google, Facebook, Apple) with a sleek UI, gradient backgrounds, and navigation between welcome, login, signup, and home screens.",
+  tags: ["React Native", "Firebase", "Authentication", "Expo", "React Navigation", "Mobile App","Clerk"],
     video: quiz,
     github: 'https://github.com/jeyachandranj/Google-Form-AI.git',
-    live: 'https://drive.google.com/drive/folders/1OOWh5aCHHF4S2SPqfTUkguF_ebY8Figg',
+    live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
   }
 ];
 

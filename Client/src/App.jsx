@@ -20,8 +20,7 @@ function App() {
 
   return (
     <div className="app">
-      {/* Star Background added here, before other content */}
-      <StarBackground />
+            <StarBackground />
       
       <AnimatePresence>
         {isLoading ? (
