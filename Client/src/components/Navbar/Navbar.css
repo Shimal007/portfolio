@@ -67,12 +67,49 @@
 .navbar-social {
   display: flex;
   gap: 25px;
+  position: relative;
 }
 
 .navbar-social a {
   font-size: 1.8rem;
   transition: color 0.3s ease, transform 0.3s ease;
   color: white;
+  position: relative;
+}
+
+/* Tooltip styles */
+.navbar-social a .tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.navbar-social a .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.navbar-social a:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .navbar-social a:hover {
@@ -127,7 +164,7 @@
   }
 
   .navbar-social {
-    display: none; /* Hide social links on smaller screens to save space */
+    display: none;
   }
 
   .hamburger {
