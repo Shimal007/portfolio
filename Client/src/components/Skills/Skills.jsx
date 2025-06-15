@@ -9,6 +9,10 @@ const Skills = ({ textEnter, textLeave }) => {
     { name: 'Langchain', color: '#00599C', icon: '🔗' },
     { name: 'LangGraph', color: '#00599C', icon: 'LG' },
     { name: 'Pytessaract', color: '#00599C', icon: 'PT' },
+    { name: 'Machine Learning', color: '#F05032', icon: '🤖' },
+    { name: 'Deep Learning', color: '#F05032', icon: '🧠' },
+    { name: 'Computer Vision', color: '#F05032', icon: 'CV' },
+
   ]
   const frontendTech = [
     { name: 'HTML', color: '#E34F26', icon: '🌐' },
@@ -74,7 +78,7 @@ const Skills = ({ textEnter, textLeave }) => {
         </section>
         <section className="tech-section">
           <h3 className="section-title">
-            Languages& <span>Ai Tools</span>
+            Languages & <span>Ai</span>
           </h3>
           <div className="tech-grid">
             {languages.map((tech, index) => (
