@@ -1,18 +1,25 @@
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi'
-import './Navbar.css'
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import './Navbar.css';
 
 const Navbar = ({ activeSection, setActiveSection }) => {
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu toggle
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close the menu when a link is clicked (on mobile)
+  const handleLinkClick = (sectionId) => {
+    setActiveSection(sectionId);
+    setIsMenuOpen(false); // Close the menu
+  };
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -21,7 +28,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     { id: 'projects', label: 'Projects' },
     { id: 'resume', label: 'Resume' },
     { id: 'contact', label: 'Contact' },
-  ]
+  ];
 
   return (
     <motion.nav 
@@ -31,13 +38,23 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       transition={{ duration: 0.5 }}
     >
       <div className="navbar-container">
-        <ul className="navbar-links">
+        {/* Hamburger Menu */}
+        <div 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           {navItems.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
                 className={activeSection === item.id ? 'active' : ''}
-                onClick={() => setActiveSection(item.id)}
+                onClick={() => handleLinkClick(item.id)}
               >
                 {item.label}
                 {activeSection === item.id && (
@@ -51,7 +68,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             </li>
           ))}
         </ul>
-        
+
         <div className="navbar-social">
           <a href="https://github.com/shimal007" target="_blank" rel="noopener noreferrer">
             <FiGithub />
@@ -59,13 +76,13 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           <a href="https://www.linkedin.com/in/shimal-akmal-a7b0ba291/" target="_blank" rel="noopener noreferrer">
             <FiLinkedin />
           </a>
-          <a href="shimalakmal12@gmail.com">
+          <a href="mailto:shimalakmal12@gmail.com">
             <FiMail />
           </a>
         </div>
       </div>
     </motion.nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

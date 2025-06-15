@@ -2,6 +2,14 @@ import React from 'react';
 import './Skills.css';
 
 const Skills = ({ textEnter, textLeave }) => {
+  const languages=[
+    { name: 'Python', color: '#3776AB', icon: '🐍' },
+    { name: 'Java', color: '#007396', icon: 'J' },
+    { name: 'C', color: '#00599C', icon: 'C' },
+    { name: 'Langchain', color: '#00599C', icon: '🔗' },
+    { name: 'LangGraph', color: '#00599C', icon: 'LG' },
+    { name: 'Pytessaract', color: '#00599C', icon: 'PT' },
+  ]
   const frontendTech = [
     { name: 'HTML', color: '#E34F26', icon: '🌐' },
     { name: 'CSS', color: '#1572B6', icon: '🎨' },
@@ -22,8 +30,6 @@ const Skills = ({ textEnter, textLeave }) => {
     { name: 'Github', color: '#181717', icon: '🐙' },
     { name: 'VS Code', color: '#007ACC', icon: '💻' },
     { name: 'Git', color: '#F05032', icon: '📊' },
-    { name: 'BackStage', color: '#36BCF7', icon: '🎭' },
-    { name: 'SonarCloud', color: '#F3702A', icon: '☁️' }
   ];
 
   const TechCard = ({ tech }) => (
@@ -62,6 +68,16 @@ const Skills = ({ textEnter, textLeave }) => {
           </h3>
           <div className="tech-grid">
             {backendTech.map((tech, index) => (
+              <TechCard key={index} tech={tech} />
+            ))}
+          </div>
+        </section>
+        <section className="tech-section">
+          <h3 className="section-title">
+            Languages& <span>Ai Tools</span>
+          </h3>
+          <div className="tech-grid">
+            {languages.map((tech, index) => (
               <TechCard key={index} tech={tech} />
             ))}
           </div>
