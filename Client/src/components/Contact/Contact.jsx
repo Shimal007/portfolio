@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import emailjs from "@emailjs/browser";
+import emailjs from 'emailjs-com'
 
 import { FiSend, FiLinkedin, FiGithub, FiTwitter } from 'react-icons/fi'
 import './Contact.css'
