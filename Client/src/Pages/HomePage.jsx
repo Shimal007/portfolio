@@ -134,7 +134,7 @@ const HomePage = ({
                   Contact Me
                 </motion.a>
                 <motion.a 
-                  href="https://drive.google.com/file/d/1EZzRs3rhGvCutasnaGoi7KgFqKVYXtWt/view?usp=sharing" 
+                  href="https://drive.google.com/file/d/1LeTyB1P3ECD572uXwPbcDJEFciZb42jJ/view?usp=sharing" 
                   className="btn secondary"
                   onMouseEnter={buttonEnter}
                   onMouseLeave={buttonLeave}
@@ -170,11 +170,12 @@ const HomePage = ({
                 <motion.div
                   key={currentAchievement}
                   className="achievement-card"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.5 }}
+                  initial={{ opacity: 0, scale: 0.7, rotateY: -90 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                  exit={{ opacity: 0, scale: 0.7, rotateY: 90 }}
+                  transition={{ duration: 0.9, type: 'spring', stiffness: 60, damping: 18 }}
                 >
+                  <div className="achievement-particles"></div>
                   <div className="achievement-content">
                     <h3>{achievements[currentAchievement].title}</h3>
                     <div className="achievement-details">

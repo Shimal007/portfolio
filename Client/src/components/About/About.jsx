@@ -20,7 +20,8 @@ const About = ({ textEnter, textLeave }) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            About Me
+            <span style={{ color: '#fff' }}>About </span>
+            <span className="about-me-blue">Me</span>
           </motion.h2>
           
           <motion.div 

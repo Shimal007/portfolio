@@ -62,6 +62,39 @@
   transform: scale(1.02);
 }
 
+.stat-description {
+  display: inline-block;
+  font-size: 1.08rem;
+  color: #bdbdbd;
+  margin-bottom: 18px;
+  text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  white-space: pre-line;
+  animation: text-reveal 1.2s cubic-bezier(.4,2,.3,1) both;
+}
+
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    letter-spacing: 0.2em;
+  }
+  60% {
+    opacity: 0.7;
+    filter: blur(2px);
+    letter-spacing: 0.05em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    letter-spacing: 0.01em;
+  }
+}
+
 /* Enhanced Responsive Styles */
 @media (max-width: 1200px) {
   .stats-grid {

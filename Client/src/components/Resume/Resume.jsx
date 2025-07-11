@@ -41,6 +41,15 @@ const Resume = ({ textEnter, textLeave }) => {
             >
               GitHub Activity
             </motion.h3>
+            <motion.p
+              className="stat-description"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              Track my GitHub streak with regular commits, code contributions, and project updates below.
+            </motion.p>
             <div className="streak-container">
               <a href="https://github.com/shimal007">
                 <img
@@ -70,6 +79,15 @@ const Resume = ({ textEnter, textLeave }) => {
             >
               LeetCode Progress
             </motion.h3>
+            <motion.p
+              className="stat-description"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              Track my LeetCode problem-solving streak and coding challenge progress below.
+            </motion.p>
             <div className="leetcode-container">
               <a href="https://leetcode.com/Shimal07/">
                 <img 

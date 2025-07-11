@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import './Skills.css';
 
 const Skills = ({ textEnter, textLeave }) => {
@@ -12,7 +13,6 @@ const Skills = ({ textEnter, textLeave }) => {
     { name: 'Machine Learning', color: '#F05032', icon: '🤖' },
     { name: 'Deep Learning', color: '#F05032', icon: '🧠' },
     { name: 'Computer Vision', color: '#F05032', icon: 'CV' },
-
   ]
   const frontendTech = [
     { name: 'HTML', color: '#E34F26', icon: '🌐' },
@@ -36,67 +36,122 @@ const Skills = ({ textEnter, textLeave }) => {
     { name: 'Git', color: '#F05032', icon: '📊' },
   ];
 
-  const TechCard = ({ tech }) => (
-    <div className="tech-card">
-      <div className="tech-icon" style={{ backgroundColor: tech.color }}>
-        {tech.icon}
-      </div>
-      <span className="tech-name">{tech.name}</span>
-    </div>
-  );
+  // Custom TechCard with 3D tilt and sparkles
+  const TechCard = ({ tech }) => {
+    const cardRef = useRef(null);
+    const [tilt, setTilt] = useState({ x: 0, y: 0 });
+    const [hovered, setHovered] = useState(false);
+
+    // 3D tilt effect
+    const handleMouseMove = (e) => {
+      if (window.innerWidth < 768) return; // Disable on mobile
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      setTilt({ x: rotateX, y: rotateY });
+    };
+    const handleMouseLeave = () => {
+      setTilt({ x: 0, y: 0 });
+      setHovered(false);
+    };
+    const handleMouseEnter = () => {
+      setHovered(true);
+    };
+
+    return (
+      <motion.div
+        className={`tech-card${hovered ? ' tech-card-glow' : ''}`}
+        ref={cardRef}
+        style={{
+          transform: `rotateX(${-tilt.x}deg) rotateY(${tilt.y}deg) scale(${hovered ? 1.07 : 1})`,
+          transition: tilt.x === 0 && tilt.y === 0 ? 'transform 0.6s cubic-bezier(.4,2,.3,1)' : 'transform 0.18s cubic-bezier(.4,2,.3,1)',
+          boxShadow: hovered ? `0 0 32px 0 ${tech.color}55, 0 8px 32px 0 #0005` : undefined,
+          zIndex: hovered ? 2 : 1,
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
+        tabIndex={0}
+        aria-label={tech.name}
+      >
+        <div className="tech-icon" style={{ backgroundColor: tech.color }}>
+          {tech.icon}
+        </div>
+        <span className="tech-name">{tech.name}</span>
+        {/* Sparkles overlay */}
+        <div className={`tech-sparkles${hovered ? ' show' : ''}`}></div>
+      </motion.div>
+    );
+  };
+
+  // Section animation variants
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, staggerChildren: 0.1 } },
+  };
 
   return (
     <div className="tech-showcase">
+      {/* Animated background accent */}
+      <div className="skills-bg-accent"></div>
       <div className="container">
-        <h2 
+        <motion.h2 
           className="section-title main-title" 
           onMouseEnter={textEnter} 
           onMouseLeave={textLeave}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          Skill<span className="highlight">ss</span>
-        </h2>
-        <section className="tech-section">
+          Skill<span className="highlight">s</span>
+        </motion.h2>
+        <motion.section className="tech-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <h3 className="section-title">
             Front<span>end</span>
           </h3>
-          <div className="tech-grid">
+          <motion.div className="tech-grid" variants={sectionVariants}>
             {frontendTech.map((tech, index) => (
               <TechCard key={index} tech={tech} />
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section className="tech-section">
+        <motion.section className="tech-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <h3 className="section-title">
             Back<span>end</span>
           </h3>
-          <div className="tech-grid">
+          <motion.div className="tech-grid" variants={sectionVariants}>
             {backendTech.map((tech, index) => (
               <TechCard key={index} tech={tech} />
             ))}
-          </div>
-        </section>
-        <section className="tech-section">
+          </motion.div>
+        </motion.section>
+        <motion.section className="tech-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <h3 className="section-title">
             Languages & <span>Ai</span>
           </h3>
-          <div className="tech-grid">
+          <motion.div className="tech-grid" variants={sectionVariants}>
             {languages.map((tech, index) => (
               <TechCard key={index} tech={tech} />
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section className="tech-section">
+        <motion.section className="tech-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <h3 className="section-title">
             Platforms <span>& Tools</span>
           </h3>
-          <div className="tech-grid">
+          <motion.div className="tech-grid" variants={sectionVariants}>
             {platformsTools.map((tech, index) => (
               <TechCard key={index} tech={tech} />
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
       </div>
     </div>
   );

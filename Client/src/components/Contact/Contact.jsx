@@ -161,7 +161,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
             <div className="info-item">
               <span className="info-label">Email:</span>
               <a 
-                href="mailto:example@example.com"
+                href="mailto:shimalakmal12@gmail.com"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
               >
@@ -176,7 +176,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
 
             <div className="social-links">
               <a 
-                href="https://www.linkedin.com/in/shimal-akmal-a7b0ba291/" 
+                href="https://www.linkedin.com/in/shimal-akmal/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={buttonEnter}
