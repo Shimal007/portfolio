@@ -116,17 +116,8 @@
   opacity: 0.09;
 }
 .achievement-card::after {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 32px;
-  width: 6px;
-  height: 60px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
-  box-shadow: 0 2px 12px #8b5cf655;
-  z-index: 3;
-  opacity: 0.85;
+  /* Removed left accent bar */
+  display: none;
 }
 .achievement-card .achievement-particles {
   pointer-events: none;
