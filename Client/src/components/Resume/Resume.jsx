@@ -52,7 +52,11 @@ const Resume = ({ textEnter, textLeave }) => {
             </motion.p>
             <div className="streak-container">
               <a href="https://github.com/shimal007">
-                                    <Image src="https://github-readme-stats.vercel.app/api?username=Shimal007&show_icons=true&locale=en&layout=compact&hide_border=true&theme=radical" alt="Atanu's github stats" />
+                                   <img
+                  className="stats-image"
+                  src="https://github-readme-stats.vercel.app/api?username=Shimal007&count_private=true&show_icons=true&theme=nightowl&bg_color=0,000000,441350&title_color=c56a90&text_color=ffffff&rank_icon=github&hide=prs,issues,contribs&show=reviews,prs_merged,prs_merged_percentage"
+                  alt="GitHub Stats"
+                />
               </a>
             </div>
           </motion.div>
