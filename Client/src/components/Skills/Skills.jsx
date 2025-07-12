@@ -17,7 +17,7 @@ const Skills = ({ textEnter, textLeave }) => {
   const frontendTech = [
     { name: 'HTML', color: '#E34F26', icon: '🌐' },
     { name: 'CSS', color: '#1572B6', icon: '🎨' },
-    { name: 'JavaScript', color: '#F7DF1E', icon: 'JS' },
+    { name: 'TailwindCss', color: '#F7DF1E', icon: 'TC' },
     { name: 'React', color: '#61DAFB', icon: '⚛️' },
     { name: 'Bootstrap', color: '#7952B3', icon: 'B' }
   ];
@@ -34,6 +34,7 @@ const Skills = ({ textEnter, textLeave }) => {
     { name: 'Github', color: '#181717', icon: '🐙' },
     { name: 'VS Code', color: '#007ACC', icon: '💻' },
     { name: 'Git', color: '#F05032', icon: '📊' },
+    {name:'Docker',color: '#181717',icon:'D'}
   ];
 
   // Custom TechCard with 3D tilt and sparkles
@@ -133,7 +134,7 @@ const Skills = ({ textEnter, textLeave }) => {
         </motion.section>
         <motion.section className="tech-section" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <h3 className="section-title">
-            Languages & <span>Ai</span>
+            Languages & <span>AI</span>
           </h3>
           <motion.div className="tech-grid" variants={sectionVariants}>
             {languages.map((tech, index) => (
