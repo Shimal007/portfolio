@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiCode, FiDatabase, FiSmartphone, FiGlobe, FiCpu } from 'react-icons/fi';
 import './Projects.css';
 import ticketimg from '../../assets/images/chennai.png';
 import quizimg from '../../assets/images/quiz.png';
 import fitnessimg from '../../assets/images/fitnessapp.jpg';
 import tagmeimg from '../../assets/images/tagmenow.png';
 import mockimg from '../../assets/images/mockinterview.png';
+
 const projects = [
   {
     id: 1,
@@ -16,6 +17,10 @@ const projects = [
     image: ticketimg,
     github: 'https://github.com/Shimal007/TicketBookingBot.git',
     live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
+    type: 'AI Chatbot',
+    status: 'Live',
+    techCount: 6,
+    icons: [FiCode, FiDatabase, FiGlobe]
   },
   {
     id: 2,
@@ -25,6 +30,10 @@ const projects = [
     image: quizimg,
     github: 'https://github.com/Sanjayraj-k/Ai-quiz-Generator.git',
     live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
+    type: 'AI Platform',
+    status: 'Live',
+    techCount: 8,
+    icons: [FiCpu, FiCode, FiDatabase]
   },
   {
     id: 3,
@@ -34,6 +43,10 @@ const projects = [
     image: fitnessimg,
     github: 'https://github.com/Sanjayraj-k/Fitness_app.git',
     live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
+    type: 'Mobile App',
+    status: 'Live',
+    techCount: 7,
+    icons: [FiSmartphone, FiCode, FiDatabase]
   },
   {
   id: 4,
@@ -43,6 +56,10 @@ const projects = [
     image: tagmeimg,
     github: 'https://github.com/Shimal007/TagMe.git',
     live: 'https://drive.google.com/file/d/1XIlywq9LTnZuituBOOZfZtpAx55ZMZFo/view?usp=sharing',
+    type: 'AI Web App',
+    status: 'Live',
+    techCount: 7,
+    icons: [FiCpu, FiGlobe, FiCode]
   },
   {
     id: 5,
@@ -52,6 +69,10 @@ const projects = [
     image: mockimg,
     github: 'https://github.com/Shimal007/Mock-Interview.git',
     live: 'https://drive.google.com/file/d/1Hn26j3s6h4LLm7kP9DlGu4wQhq4liof5/view?usp=sharing',
+    type: 'AI Platform',
+    status: 'Live',
+    techCount: 6,
+    icons: [FiCpu, FiCode, FiDatabase]
   }
   
 ];
@@ -60,6 +81,8 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
   const [visibleProjects, setVisibleProjects] = useState(3);
   const [isMobile, setIsMobile] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hoveredTag, setHoveredTag] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -95,20 +118,104 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
     }
   };
 
+  // Enhanced animation variants for project cards
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 100,
+      scale: 0.8,
+      rotateX: -15
+    },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.8,
+        type: "spring",
+        stiffness: 50,
+        damping: 15
+      }
+    }),
+    hover: {
+      y: -20,
+      scale: 1.05,
+      rotateY: 5,
+      transition: {
+        duration: 0.4,
+        type: "spring",
+        stiffness: 300
+      }
+    }
+  };
+
+  // Animation variants for tech stack tags
+  const tagVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.8, 
+      y: 20,
+      rotateX: -90
+    },
+    visible: (i) => ({
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100
+      }
+    }),
+    hover: {
+      scale: 1.1,
+      y: -5,
+      rotateY: 10,
+      transition: {
+        duration: 0.2,
+        type: "spring",
+        stiffness: 300
+      }
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        duration: 0.1
+      }
+    }
+  };
+
+  // Animation variants for project content
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.3
+      }
+    }
+  };
+
   return (
     <motion.div
       className="projects-section"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 1 }}
       viewport={{ once: true, amount: 0.1 }}
     >
       <div className="projects-bg-particles"></div>
       <div className="projects-container">
         <motion.h2
-          initial={{ x: -50, opacity: 0 }}
+          initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, type: "spring" }}
           viewport={{ once: true }}
           onMouseEnter={projectEnter}
           onMouseLeave={projectLeave}
@@ -121,70 +228,186 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
             <motion.div
               key={project.id}
               className="project-card"
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ 
-                duration: isMobile ? 0.3 : 0.5, 
-                delay: isMobile ? 0 : index * 0.1 
-              }}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
               viewport={{ once: true, margin: isMobile ? "0px" : "100px" }}
-              onMouseEnter={projectEnter}
-              onMouseLeave={projectLeave}
+              onMouseEnter={() => {
+                setHoveredCard(project.id);
+                projectEnter();
+              }}
+              onMouseLeave={() => {
+                setHoveredCard(null);
+                projectLeave();
+              }}
+              layout
             >
               <div className="project-image">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
                   className="project-img"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: '#1a1a1a' }}
                 />
-                {isMobile && (
-                  <div className="mobile-placeholder">
-                    <h3>{project.title}</h3>
-                  </div>
-                )}
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a 
+                
+                {/* Project Type Indicator */}
+                <div className="project-type">
+                  {project.type}
+                </div>
+
+                {/* Status Indicator */}
+                <div className="project-status">
+                  <div className="status-dot"></div>
+                  <span className="status-text">{project.status}</span>
+                </div>
+
+                {/* Tech Stack Preview */}
+                <div className="tech-preview">
+                  {[...Array(Math.min(project.techCount, 3))].map((_, i) => (
+                    <div key={i} className="tech-dot"></div>
+                  ))}
+                </div>
+
+                {/* Floating Icons */}
+                <div className="floating-icons">
+                  {project.icons.map((Icon, iconIndex) => (
+                    <motion.div
+                      key={iconIndex}
+                      className="floating-icon"
+                      whileHover={{ 
+                        scale: 1.2, 
+                        rotate: 10,
+                        transition: { duration: 0.3 }
+                      }}
+                    >
+                      <Icon />
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Remove mobile placeholder for mobile view */}
+                <motion.div 
+                  className="project-overlay"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.div 
+                    className="project-links"
+                    initial={{ y: 20, opacity: 0 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
+                  >
+                    <motion.a 
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        y: -8,
+                        transition: { duration: 0.3 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
                       onMouseEnter={buttonEnter}
                       onMouseLeave={buttonLeave}
                     >
                       <FiGithub />
-                    </a>
-                    <a 
+                    </motion.a>
+                    <motion.a 
                       href={project.live} 
                       target="_blank" 
                       rel="noopener noreferrer"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        y: -8,
+                        transition: { duration: 0.3 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
                       onMouseEnter={buttonEnter}
                       onMouseLeave={buttonLeave}
                     >
                       <FiExternalLink />
-                    </a>
-                  </div>
-                </div>
+                    </motion.a>
+                  </motion.div>
+                </motion.div>
               </div>
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
+              <motion.div 
+                className="project-content"
+                variants={contentVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {project.title}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {project.description}
+                </motion.p>
+                <motion.div 
+                  className="project-tags"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ staggerChildren: 0.1 }}
+                >
+                  {project.tags.map((tag, tagIndex) => (
+                    <motion.span
+                      key={tag}
+                      custom={tagIndex}
+                      variants={tagVariants}
+                      whileHover="hover"
+                      whileTap="tap"
+                      onHoverStart={() => setHoveredTag(tag)}
+                      onHoverEnd={() => setHoveredTag(null)}
+                      className={`project-tag ${hoveredTag === tag ? 'tag-glow' : ''}`}
+                      style={{
+                        background: `linear-gradient(135deg, 
+                          rgba(102, 126, 234, 0.2) 0%, 
+                          rgba(118, 75, 162, 0.2) 100%)`,
+                        border: `1px solid ${hoveredTag === tag ? 'rgba(102, 126, 234, 0.8)' : 'rgba(102, 126, 234, 0.4)'}`,
+                        boxShadow: hoveredTag === tag 
+                          ? '0 0 25px rgba(102, 126, 234, 0.5), 0 0 50px rgba(118, 75, 162, 0.3)' 
+                          : 'none'
+                      }}
+                    >
+                      {tag}
+                    </motion.span>
                   ))}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
 
         {isMobile && visibleProjects < projects.length && (
-          <div className="load-more-container">
+          <motion.div 
+            className="load-more-container"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <motion.button
               className="load-more-btn"
               onClick={loadMore}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ 
+                scale: 1.05,
+                y: -3,
+                transition: { duration: 0.3 }
+              }}
               whileTap={{ scale: 0.95 }}
               onMouseEnter={buttonEnter}
               onMouseLeave={buttonLeave}
@@ -192,7 +415,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
               Load More Projects
               {loading && <span className="loading-spinner"></span>}
             </motion.button>
-          </div>
+          </motion.div>
         )}
       </div>
     </motion.div>
