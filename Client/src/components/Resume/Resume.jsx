@@ -51,13 +51,12 @@ const Resume = ({ textEnter, textLeave }) => {
               Track my GitHub streak with regular commits, code contributions, and project updates below.
             </motion.p>
             <div className="streak-container">
-              <a href="https://github.com/shimal007">
-                                   <img
-                  className="stats-image"
-                  src="https://github-readme-stats.vercel.app/api?username=Shimal007&count_private=true&show_icons=true&theme=nightowl&bg_color=0,000000,441350&title_color=c56a90&text_color=ffffff&rank_icon=github&hide=prs,issues,contribs&show=reviews,prs_merged,prs_merged_percentage"
-                  alt="GitHub Stats"
-                />
-              </a>
+          
+            <img
+            className="stats-image"
+            src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Shimal007&theme=radical"
+            alt="GitHub Stats"
+          />
             </div>
           </motion.div>
 
