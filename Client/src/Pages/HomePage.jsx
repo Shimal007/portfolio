@@ -13,10 +13,10 @@ import SectionWrapper from '../components/SectionWrapper/SectionWrapper';
 import './HomePage.css';
 import csd from '../assets/images/csd_2.jpg';
 import eie from '../assets/images/Eie_1.jpg';
-const HomePage = ({ 
-  textEnter, 
-  textLeave, 
-  buttonEnter, 
+const HomePage = ({
+  textEnter,
+  textLeave,
+  buttonEnter,
   buttonLeave,
   projectEnter,
   projectLeave,
@@ -26,7 +26,7 @@ const HomePage = ({
   const [currentAchievement, setCurrentAchievement] = useState(0);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  
+
   const achievements = [
     {
       id: 1,
@@ -75,7 +75,7 @@ const HomePage = ({
   return (
     <div className="home-page">
       <SectionWrapper id="home" onVisible={() => handleSectionChange('home')}>
-        <motion.div 
+        <motion.div
           className="home-section-container"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -83,14 +83,14 @@ const HomePage = ({
         >
           <div className="home-hero-content">
             <div className="home-content">
-              <motion.div 
+              <motion.div
                 className="home-text"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <h4>Hello, I'm</h4>
-                <h1 
+                <h1
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
@@ -123,8 +123,8 @@ const HomePage = ({
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <motion.a 
-                  href="#contact" 
+                <motion.a
+                  href="#contact"
                   className="btn primary"
                   onMouseEnter={buttonEnter}
                   onMouseLeave={buttonLeave}
@@ -133,8 +133,8 @@ const HomePage = ({
                 >
                   Contact Me
                 </motion.a>
-                <motion.a 
-                  href="https://drive.google.com/file/d/1LeTyB1P3ECD572uXwPbcDJEFciZb42jJ/view?usp=sharing" 
+                <motion.a
+                  href="https://drive.google.com/file/d/1KGhuyWptkGcJiH21SnW_ImRJvWpIKLEW/view?usp=sharing"
                   className="btn secondary"
                   onMouseEnter={buttonEnter}
                   onMouseLeave={buttonLeave}
@@ -148,16 +148,16 @@ const HomePage = ({
 
             <div className="achievements-slider">
               <div className="slider-controls">
-                <motion.button 
-                  onClick={prevAchievement} 
+                <motion.button
+                  onClick={prevAchievement}
                   className="slider-arrow"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <FiChevronLeft />
                 </motion.button>
-                <motion.button 
-                  onClick={nextAchievement} 
+                <motion.button
+                  onClick={nextAchievement}
                   className="slider-arrow"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -165,7 +165,7 @@ const HomePage = ({
                   <FiChevronRight />
                 </motion.button>
               </div>
-              
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentAchievement}
@@ -186,8 +186,8 @@ const HomePage = ({
                     </div>
                   </div>
                   <div className="achievement-image">
-                    <img 
-                      src={achievements[currentAchievement].image} 
+                    <img
+                      src={achievements[currentAchievement].image}
                       alt={achievements[currentAchievement].title}
                     />
                   </div>
@@ -196,7 +196,7 @@ const HomePage = ({
             </div>
           </div>
 
-          <motion.div 
+          <motion.div
             className="scroll-indicator"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -208,21 +208,21 @@ const HomePage = ({
       </SectionWrapper>
 
       <SectionWrapper id="about" dark onVisible={() => handleSectionChange('about')}>
-        <About 
-          textEnter={textEnter} 
+        <About
+          textEnter={textEnter}
           textLeave={textLeave}
         />
       </SectionWrapper>
 
       <SectionWrapper id="skills" dark onVisible={() => handleSectionChange('skills')}>
-        <Skills 
-          textEnter={textEnter} 
+        <Skills
+          textEnter={textEnter}
           textLeave={textLeave}
         />
       </SectionWrapper>
 
       <SectionWrapper id="projects" onVisible={() => handleSectionChange('projects')}>
-        <Projects 
+        <Projects
           projectEnter={projectEnter}
           projectLeave={projectLeave}
           buttonEnter={buttonEnter}
@@ -231,8 +231,8 @@ const HomePage = ({
       </SectionWrapper>
 
       <SectionWrapper id="resume" dark onVisible={() => handleSectionChange('resume')}>
-        <Resume 
-          textEnter={textEnter} 
+        <Resume
+          textEnter={textEnter}
           textLeave={textLeave}
           buttonEnter={buttonEnter}
           buttonLeave={buttonLeave}
@@ -240,8 +240,8 @@ const HomePage = ({
       </SectionWrapper>
 
       <SectionWrapper id="contact" onVisible={() => handleSectionChange('contact')}>
-        <Contact 
-          textEnter={textEnter} 
+        <Contact
+          textEnter={textEnter}
           textLeave={textLeave}
           buttonEnter={buttonEnter}
           buttonLeave={buttonLeave}

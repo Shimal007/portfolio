@@ -7,13 +7,13 @@ import quizimg from '../../assets/images/quiz.png';
 import fitnessimg from '../../assets/images/fitnessapp.jpg';
 import tagmeimg from '../../assets/images/tagmenow.png';
 import mockimg from '../../assets/images/mockinterview.png';
-
+import contentGenImg from '../../assets/images/scribe.png';
 const projects = [
   {
     id: 1,
     title: 'Ticket Booking Chatbot',
-    description: 'An AI chatbot system for Chennai Museum that lets users explore exhibits, book tickets, and make payments. Built with React.js, Flask, and MongoDB, it uses LangChain with LLaMA 3 for smart, natural conversations. Razorpay handles secure payments.',
-    tags: ['React.js', 'Flask', 'MongoDB', 'Razorpay', 'LangChain', 'LLaMA 3'],
+    description: 'Designed for the Chennai Museum, this AI‑powered chatbot enables visitors to explore exhibits, book tickets, and complete secure payments seamlessly. Leveraging React.js for the front‑end, Flask and MongoDB for the back‑end, and LangChain with LLaMA 3 for advanced natural‑language understanding, the system delivers intelligent, context‑aware conversations. Integrated with Razorpay for reliable payment processing and offering 24/7 WhatsApp support, the chatbot ensures a smooth, round‑the‑clock visitor experience.',
+    tags: ['React.js', 'Flask', 'MongoDB', 'Razorpay', 'LangChain', 'LLaMA 3', 'Meta Developer'],
     image: ticketimg,
     github: 'https://github.com/Shimal007/TicketBookingBot.git',
     live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
@@ -49,10 +49,10 @@ const projects = [
     icons: [FiSmartphone, FiCode, FiDatabase]
   },
   {
-  id: 4,
+    id: 4,
     title: 'TagMeNow — AI Face Matching & Tagging System',
-    description: 'A smart web application that detects, matches, and tags faces in group photos using a deep learning-based MSTN model. Designed with React.js, Tailwind CSS, and MongoDB, it ensures high accuracy and speed, making it effortless to organize and identify people in shared memories.',
-    tags: ['React.js', 'Tailwind CSS', 'MongoDB','FaceNet', 'MSTN', 'Deep Learning','Mtcnn'],
+    description: 'An AI-powered photo management platform that lets users upload images, detect and extract faces, cluster people, tag individuals, and search for matching photos using FaceNet, MTCNN, and CLIP-based vision search. It supports solo-photo face matching, dataset-wide clustering, text-to-image search, and advanced filters such as face-count detection and single/duo/group photo identification. The system includes secure authentication, a personal album, Drive-like storage with extension-ready access, ZIP downloads, and highlighted match previews—built end-to-end with React.js, Flask, MongoDB, and PyTorch.',
+    tags: ['React.js', 'Tailwind CSS', 'MongoDB', 'FaceNet', 'MSTN', 'Deep Learning', 'Mtcnn', 'Flask', 'Pytorch', 'Clip'],
     image: tagmeimg,
     github: 'https://github.com/Shimal007/TagMe.git',
     live: 'https://drive.google.com/file/d/1XIlywq9LTnZuituBOOZfZtpAx55ZMZFo/view?usp=sharing',
@@ -64,7 +64,7 @@ const projects = [
   {
     id: 5,
     title: 'AI-Powered Mock Interview Platform',
-    description: 'A full-stack AI-driven mock interview system with LLM-based dynamic question generation, aptitude and coding rounds, and real-time proctoring (face detection, audio monitoring, tab switch tracking). Built using React.js, Flask, and MongoDB with Docker for code execution.',
+    description: 'An AI-powered recruitment and assessment platform built with React.js, Flask, and MongoDB that automates hiring and improves the candidate journey. It features HR authentication, role creation, bulk student onboarding, ATS scoring, aptitude quizzes, coding rounds, and an integrated AI assistant. The system supports company profile scraping and provides a unified learning and testing ecosystem. Candidates undergo face-based identity verification with real-time proctoring—face tracking, audio monitoring, and tab-switch detection—for secure exams. With webcam-enabled forms, practice quizzes, multi-round interviews, automated scoring, and seamless dashboard navigation, it delivers a complete end-to-end hiring solution.',
     tags: ['React.js', 'Flask', 'MongoDB', 'LLM', 'OpenCV', 'Docker'],
     image: mockimg,
     github: 'https://github.com/Shimal007/Mock-Interview.git',
@@ -73,8 +73,21 @@ const projects = [
     status: 'Live',
     techCount: 6,
     icons: [FiCpu, FiCode, FiDatabase]
+  },
+  {
+    id: 6,
+    title: 'AI Content Generator Platform',
+    description: 'A comprehensive AI-powered content creation platform built with the MERN stack (MongoDB, Express.js, React, Node.js) that transforms content generation using Google Generative AI and Groq SDK. It features 18 specialized templates including blog creation, YouTube SEO optimization, Instagram content generation, code writing/explanation, and image language translation. The system includes secure JWT and Google OAuth authentication, credit-based usage with Razorpay payment integration, real-time diff visualization for text improvements, and an integrated Toast UI markdown editor. With content history tracking, analytics dashboard, cover letter generation with resume upload, AI flowchart creator, and automated SEO optimization, it delivers a complete end-to-end content creation solution for marketers, developers, and content creators.',
+    tags: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Google AI', 'Razorpay'],
+    image: contentGenImg, // Replace with your project image variable
+    github: 'https://github.com/Shimal007/Ai-Content-Generator.git', // Replace with actual link
+    live: 'https://scribegenai.vercel.app/', // Replace with actual deployment link
+    type: 'AI Platform',
+    status: 'Live',
+    techCount: 6,
+    icons: [FiCpu, FiCode, FiDatabase]
   }
-  
+
 ];
 
 const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
@@ -88,7 +101,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -120,8 +133,8 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
 
   // Enhanced animation variants for project cards
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 100,
       scale: 0.8,
       rotateX: -15
@@ -153,9 +166,9 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
 
   // Animation variants for tech stack tags
   const tagVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8, 
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
       y: 20,
       rotateX: -90
     },
@@ -251,7 +264,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                   className="project-img"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: '#1a1a1a' }}
                 />
-                
+
                 {/* Project Type Indicator */}
                 <div className="project-type">
                   {project.type}
@@ -276,8 +289,8 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                     <motion.div
                       key={iconIndex}
                       className="floating-icon"
-                      whileHover={{ 
-                        scale: 1.2, 
+                      whileHover={{
+                        scale: 1.2,
                         rotate: 10,
                         transition: { duration: 0.3 }
                       }}
@@ -288,24 +301,24 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                 </div>
 
                 {/* Remove mobile placeholder for mobile view */}
-                <motion.div 
+                <motion.div
                   className="project-overlay"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="project-links"
                     initial={{ y: 20, opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.4 }}
                   >
-                    <motion.a 
-                      href={project.github} 
-                      target="_blank" 
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        scale: 1.1, 
+                      whileHover={{
+                        scale: 1.1,
                         y: -8,
                         transition: { duration: 0.3 }
                       }}
@@ -315,12 +328,12 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                     >
                       <FiGithub />
                     </motion.a>
-                    <motion.a 
-                      href={project.live} 
-                      target="_blank" 
+                    <motion.a
+                      href={project.live}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ 
-                        scale: 1.1, 
+                      whileHover={{
+                        scale: 1.1,
                         y: -8,
                         transition: { duration: 0.3 }
                       }}
@@ -333,7 +346,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                   </motion.div>
                 </motion.div>
               </div>
-              <motion.div 
+              <motion.div
                 className="project-content"
                 variants={contentVariants}
                 initial="hidden"
@@ -356,7 +369,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                 >
                   {project.description}
                 </motion.p>
-                <motion.div 
+                <motion.div
                   className="project-tags"
                   initial="hidden"
                   whileInView="visible"
@@ -378,8 +391,8 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
                           rgba(102, 126, 234, 0.2) 0%, 
                           rgba(118, 75, 162, 0.2) 100%)`,
                         border: `1px solid ${hoveredTag === tag ? 'rgba(102, 126, 234, 0.8)' : 'rgba(102, 126, 234, 0.4)'}`,
-                        boxShadow: hoveredTag === tag 
-                          ? '0 0 25px rgba(102, 126, 234, 0.5), 0 0 50px rgba(118, 75, 162, 0.3)' 
+                        boxShadow: hoveredTag === tag
+                          ? '0 0 25px rgba(102, 126, 234, 0.5), 0 0 50px rgba(118, 75, 162, 0.3)'
                           : 'none'
                       }}
                     >
@@ -393,7 +406,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
         </div>
 
         {isMobile && visibleProjects < projects.length && (
-          <motion.div 
+          <motion.div
             className="load-more-container"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +416,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
             <motion.button
               className="load-more-btn"
               onClick={loadMore}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 y: -3,
                 transition: { duration: 0.3 }
