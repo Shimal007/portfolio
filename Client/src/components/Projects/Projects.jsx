@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiCode, FiDatabase, FiSmartphone, FiGlobe, FiCpu } from 'react-icons/fi';
 import './Projects.css';
 import ticketimg from '../../assets/images/chennai.png';
-import quizimg from '../../assets/images/quiz.png';
 import fitnessimg from '../../assets/images/fitnessapp.jpg';
 import tagmeimg from '../../assets/images/tagmenow.png';
 import mockimg from '../../assets/images/mockinterview.png';
@@ -24,15 +23,13 @@ const projects = [
   },
   {
     id: 2,
-    title: 'AI Quiz Generator with Proctoring System',
-    description: 'An AI-powered quiz platform that generates questions from PDFs and auto-creates Google Forms for quizzes. Includes proctoring features like face tracking, tab switch detection, and speech monitoring. Built using React.js, Flask, MongoDB, and LLaMA 3 via LangChain.',
-    tags: ['React.js', 'Flask', 'MongoDB', 'LangChain', 'LangGraph', 'LLaMA 3', 'Google Forms', 'Computer Vision'],
-    image: quizimg,
-    github: 'https://github.com/Sanjayraj-k/Ai-quiz-Generator.git',
-    live: 'https://drive.google.com/drive/folders/13dqocupCOYRtiv6-7IjBPsy6PmxXyL9F?usp=sharing',
+    title: 'StudyMate - AI Learning Assistant',
+    description: 'An intelligent RAG-based study companion built with Flask, React, and Ollama that transforms learning from documents and videos. Features PDF text extraction with PyMuPDF, audio transcription using SpeechRecognition, and YouTube transcript processing for multi-format content analysis. Utilizes SentenceTransformers for semantic embeddings and FAISS for efficient vector similarity search to retrieve contextually relevant information. Includes AI-powered quiz generation with customizable difficulty levels and automated grading with explanations, personalized study plan creation (1-30 days) with daily task breakdowns and time estimates, and conversational Q&A using IBM Granite 3.3 model via Ollama. With semantic chunking for context preservation, retry mechanisms for robust JSON parsing, and comprehensive error handling, it delivers a complete end-to-end learning ecosystem.',
+    tags: ['Flask', 'React', 'Ollama', 'FAISS', 'PyMuPDF', 'RAG', 'Streamlit', 'IBM-Watson'],
+    github: 'https://github.com/Shimal007/Studymate.git', // Replace with actual link
     type: 'AI Platform',
     status: 'Live',
-    techCount: 8,
+    techCount: 6,
     icons: [FiCpu, FiCode, FiDatabase]
   },
   {
@@ -87,6 +84,7 @@ const projects = [
     techCount: 6,
     icons: [FiCpu, FiCode, FiDatabase]
   }
+
 
 ];
 
@@ -216,20 +214,12 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
   };
 
   return (
-    <motion.div
+    <div
       className="projects-section"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      viewport={{ once: true, amount: 0.1 }}
     >
       <div className="projects-bg-particles"></div>
       <div className="projects-container">
         <motion.h2
-          initial={{ x: -100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, type: "spring" }}
-          viewport={{ once: true }}
           onMouseEnter={projectEnter}
           onMouseLeave={projectLeave}
         >
@@ -243,10 +233,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
               className="project-card"
               custom={index}
               variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
               whileHover="hover"
-              viewport={{ once: true, margin: isMobile ? "0px" : "100px" }}
               onMouseEnter={() => {
                 setHoveredCard(project.id);
                 projectEnter();
@@ -431,7 +418,7 @@ const Projects = ({ projectEnter, projectLeave, buttonEnter, buttonLeave }) => {
           </motion.div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

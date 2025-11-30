@@ -18,6 +18,9 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // No‑op handlers for hover callbacks (prevent undefined errors)
+  const noop = () => { };
+
   return (
     <div className="app">
       <StarBackground />
@@ -41,7 +44,13 @@ function App() {
         <>
           <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
           <Suspense fallback={<div className="fallback">Loading…</div>}>
-            <HomePage setActiveSection={setActiveSection} />
+            <HomePage
+              setActiveSection={setActiveSection}
+              projectEnter={noop}
+              projectLeave={noop}
+              buttonEnter={noop}
+              buttonLeave={noop}
+            />
           </Suspense>
         </>
       )}
