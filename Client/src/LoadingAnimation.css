@@ -6,7 +6,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0a0a23; /* Dark background matching your theme */
+  background-color: #0a0a23;
+  /* Dark background matching your theme */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +47,8 @@
   border-radius: 50%;
   box-shadow: 0 0 18px #8b5cf655;
   display: block;
+  animation: rotateImg 2.9s linear infinite;
+  will-change: transform;
 }
 
 .gradient-circle::after {
@@ -92,6 +95,30 @@
   height: 100%;
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
   border-radius: 3px;
+  animation: fillBar 2.5s ease-in-out forwards;
+  will-change: width;
+}
+
+/* Add rotation animation */
+@keyframes rotateImg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress bar fill animation */
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* Mobile Responsiveness */
@@ -100,19 +127,20 @@
     width: 100px;
     height: 100px;
   }
+
   .loader-profile-img {
     width: 100%;
     height: 100%;
   }
-  
+
   .loading-text .name {
     font-size: 1.5rem;
   }
-  
+
   .typing-indicator {
     font-size: 1rem;
   }
-  
+
   .progress-container {
     height: 4px;
   }
@@ -123,19 +151,20 @@
     width: 80px;
     height: 80px;
   }
+
   .loader-profile-img {
     width: 100%;
     height: 100%;
   }
-  
+
   .loading-text .name {
     font-size: 1.3rem;
   }
-  
+
   .typing-indicator {
     font-size: 0.9rem;
   }
-  
+
   .loading-container {
     gap: 1.5rem;
     padding: 1rem;
