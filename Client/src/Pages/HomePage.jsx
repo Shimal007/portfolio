@@ -13,6 +13,7 @@ import SectionWrapper from '../components/SectionWrapper/SectionWrapper';
 import './HomePage.css';
 import csd from '../assets/images/csd_2.jpg';
 import eie from '../assets/images/Eie_1.jpg';
+
 const HomePage = ({
   textEnter,
   textLeave,
@@ -147,52 +148,80 @@ const HomePage = ({
             </div>
 
             <div className="achievements-slider">
-              <div className="slider-controls">
+              <motion.div
+                className="achievements-header"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <FiAward className="achievements-icon" />
+                <h2 className="achievements-title">Achievements</h2>
+                <p className="achievements-subtitle">Milestones & Recognition</p>
+              </motion.div>
+
+              <div className="carousel-container">
                 <motion.button
                   onClick={prevAchievement}
-                  className="slider-arrow"
-                  whileHover={{ scale: 1.1 }}
+                  className="slider-arrow slider-arrow-left"
+                  whileHover={{ scale: 1.1, x: -5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label="Previous achievement"
                 >
                   <FiChevronLeft />
                 </motion.button>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentAchievement}
+                    className="achievement-card"
+                    initial={{ opacity: 0, x: 100, rotateY: 20 }}
+                    animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                    exit={{ opacity: 0, x: -100, rotateY: -20 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <div className="achievement-glow"></div>
+                    <div className="achievement-image-container">
+                      <img
+                        src={achievements[currentAchievement].image}
+                        alt={achievements[currentAchievement].title}
+                        className="achievement-image"
+                      />
+                      <div className="achievement-overlay"></div>
+                    </div>
+                    <div className="achievement-content">
+                      <div className="achievement-badge">
+                        <FiAward />
+                      </div>
+                      <h3 className="achievement-title">{achievements[currentAchievement].title}</h3>
+                      <p className="achievement-description">{achievements[currentAchievement].description}</p>
+                      <div className="achievement-footer">
+                        <span className="achievement-date">
+                          {achievements[currentAchievement].date}
+                        </span>
+                        <div className="achievement-dots">
+                          {achievements.map((_, index) => (
+                            <span
+                              key={index}
+                              className={`dot ${index === currentAchievement ? 'active' : ''}`}
+                              onClick={() => setCurrentAchievement(index)}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
                 <motion.button
                   onClick={nextAchievement}
-                  className="slider-arrow"
-                  whileHover={{ scale: 1.1 }}
+                  className="slider-arrow slider-arrow-right"
+                  whileHover={{ scale: 1.1, x: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label="Next achievement"
                 >
                   <FiChevronRight />
                 </motion.button>
               </div>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentAchievement}
-                  className="achievement-card"
-                  initial={{ opacity: 0, scale: 0.7, rotateY: -90 }}
-                  animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                  exit={{ opacity: 0, scale: 0.7, rotateY: 90 }}
-                  transition={{ duration: 0.9, type: 'spring', stiffness: 60, damping: 18 }}
-                >
-                  <div className="achievement-particles"></div>
-                  <div className="achievement-content">
-                    <h3>{achievements[currentAchievement].title}</h3>
-                    <div className="achievement-details">
-                      <p>{achievements[currentAchievement].description}</p>
-                      <div className="achievement-date">
-                        {achievements[currentAchievement].date}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="achievement-image">
-                    <img
-                      src={achievements[currentAchievement].image}
-                      alt={achievements[currentAchievement].title}
-                    />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
             </div>
           </div>
 

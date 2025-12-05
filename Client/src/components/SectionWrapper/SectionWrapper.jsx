@@ -1,25 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './SectionWrapper.css';
 
 const SectionWrapper = ({ children, id, dark, onVisible }) => {
+  const timeoutRef = useRef(null);
+
   useEffect(() => {
     if (onVisible) {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            onVisible();
+            // Debounce the callback to prevent excessive updates
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = setTimeout(() => {
+              onVisible();
+            }, 100);
           }
         },
-        { threshold: 0.3 } // Reduced threshold for mobile
+        { threshold: 0.5, rootMargin: '-80px 0px -20% 0px' } // Offset for navbar height
       );
-      
+
       const element = document.getElementById(id);
       if (element) {
         observer.observe(element);
       }
-      
+
       return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
         if (element) {
           observer.unobserve(element);
         }
@@ -28,8 +39,8 @@ const SectionWrapper = ({ children, id, dark, onVisible }) => {
   }, [id, onVisible]);
 
   return (
-    <section 
-      id={id} 
+    <section
+      id={id}
       className={`section-wrapper ${dark ? 'dark' : ''}`}
     >
       <motion.div

@@ -1,25 +1,30 @@
 // src/App.jsx - Main entry point
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import StarBackground from './components/StarBackground';
 import './LoadingAnimation.css';
 import about from './assets/images/about.png';
 
-// Lazy‑load the heavy HomePage component for code‑splitting
+// Lazy-load the heavy HomePage component for code-splitting
 const HomePage = lazy(() => import('./Pages/HomePage'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
 
-  // Short simulated loading period (2 seconds) to avoid perceived lag
+  // Short simulated loading period (2 seconds) to avoid perceived lag
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // No‑op handlers for hover callbacks (prevent undefined errors)
-  const noop = () => { };
+  // Memoize callbacks to prevent unnecessary re-renders
+  const handleSetActiveSection = useCallback((section) => {
+    setActiveSection(section);
+  }, []);
+
+  // No-op handlers for hover callbacks (prevent undefined errors)
+  const noop = useCallback(() => { }, []);
 
   return (
     <div className="app">
@@ -45,7 +50,7 @@ function App() {
           <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
           <Suspense fallback={<div className="fallback">Loading…</div>}>
             <HomePage
-              setActiveSection={setActiveSection}
+              setActiveSection={handleSetActiveSection}
               projectEnter={noop}
               projectLeave={noop}
               buttonEnter={noop}
