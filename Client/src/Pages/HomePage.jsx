@@ -148,17 +148,6 @@ const HomePage = ({
             </div>
 
             <div className="achievements-slider">
-              <motion.div
-                className="achievements-header"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <FiAward className="achievements-icon" />
-                <h2 className="achievements-title">Achievements</h2>
-                <p className="achievements-subtitle">Milestones & Recognition</p>
-              </motion.div>
-
               <div className="carousel-container">
                 <motion.button
                   onClick={prevAchievement}
