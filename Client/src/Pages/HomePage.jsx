@@ -13,7 +13,9 @@ import SectionWrapper from '../components/SectionWrapper/SectionWrapper';
 import './HomePage.css';
 import csd from '../assets/images/csd_2.jpg';
 import eie from '../assets/images/Eie_1.jpg';
-
+import hack from '../assets/images/hack.jpg';
+import ibm from '../assets/images/ibm.png';
+import exodia from '../assets/images/exodia.png';
 const HomePage = ({
   textEnter,
   textLeave,
@@ -31,18 +33,39 @@ const HomePage = ({
   const achievements = [
     {
       id: 1,
+      title: "Project presentation in hackvotrix 25 hackethon",
+      description: "Built a semantic segmentation model for classifying rivers, trees, buildings, and roads from village aerial imagery and secured a top position at Hacvotrix’25.",
+      date: "June 2025",
+      image: hack
+    },
+    {
+      id: 2,
+      title: "Project presentation in Exodia 25 hackethon",
+      description: "Built a “Tag Me” face-matching system that finds a person in group photos using one reference image, integrated as a Drive extension.",
+      date: "September 2025",
+      image: exodia
+    },
+    {
+      id: 3,
+      title: "Project presentation in IBM Gen Ai hackethon",
+      description: "Developed StudyMate, a smart e-learning tool offering secure quizzes with AI proctoring, real-time language translation, automated notes generation, and performance analytics ",
+      date: "August 2025",
+      image: ibm
+    },
+    {
+      id: 4,
+      title: "Project Presentation 1st Prize",
+      description: "Presented a project on Chatbot based Ticket Booking System and won the 1st prize.",
+      date: "February 2025",
+      image: eie
+    },
+    {
+      id: 5,
       title: "CSD 24 Hour Hackathon 2nd Prize",
       description: "Built an Ayurveda Ecommerce Website with Chatbot for Assistance and won the CSD 24 Hackathon.",
       date: "March 2025",
       image: csd
     },
-    {
-      id: 2,
-      title: "Project Presentation 1st Prize",
-      description: "Presented a project on Chatbot based Ticket Booking System and won the 1st prize.",
-      date: "February 2025",
-      image: eie
-    }
   ];
 
   useEffect(() => {
