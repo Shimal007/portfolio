@@ -104,9 +104,9 @@ const HomePage = ({
                       1000,
                       'I am a AI Developer',
                       1000,
-                      'I love solving problems',
+                      ' I enjoy learning things that surprise me',
                       1000,
-                      'I create amazing experiences',
+                      'I love solving problems',
                       1000
                     ]}
                     wrapper="h3"
