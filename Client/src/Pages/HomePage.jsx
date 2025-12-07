@@ -16,6 +16,7 @@ import eie from '../assets/images/Eie_1.jpg';
 import hack from '../assets/images/hack.jpg';
 import ibm from '../assets/images/ibm.png';
 import exodia from '../assets/images/exodia.png';
+
 const HomePage = ({
   textEnter,
   textLeave,
@@ -23,7 +24,7 @@ const HomePage = ({
   buttonLeave,
   projectEnter,
   projectLeave,
-  setActiveSection
+  setActiveSection,
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentAchievement, setCurrentAchievement] = useState(0);
@@ -36,35 +37,35 @@ const HomePage = ({
       title: "Project presentation in hackvotrix 25 hackethon",
       description: "Built a semantic segmentation model for classifying rivers, trees, buildings, and roads from village aerial imagery and secured a top position at Hacvotrix’25.",
       date: "June 2025",
-      image: hack
+      image: hack,
     },
     {
       id: 2,
       title: "Project presentation in Exodia 25 hackethon",
       description: "Built a “Tag Me” face-matching system that finds a person in group photos using one reference image, integrated as a Drive extension.",
       date: "September 2025",
-      image: exodia
+      image: exodia,
     },
     {
       id: 3,
       title: "Project presentation in IBM Gen Ai hackethon",
       description: "Developed StudyMate, a smart e-learning tool offering secure quizzes with AI proctoring, real-time language translation, automated notes generation, and performance analytics ",
       date: "August 2025",
-      image: ibm
+      image: ibm,
     },
     {
       id: 4,
       title: "Project Presentation 1st Prize",
       description: "Presented a project on Chatbot based Ticket Booking System and won the 1st prize.",
       date: "February 2025",
-      image: eie
+      image: eie,
     },
     {
       id: 5,
       title: "CSD 24 Hour Hackathon 2nd Prize",
       description: "Built an Ayurveda Ecommerce Website with Chatbot for Assistance and won the CSD 24 Hackathon.",
       date: "March 2025",
-      image: csd
+      image: csd,
     },
   ];
 
@@ -80,7 +81,6 @@ const HomePage = ({
     const interval = setInterval(() => {
       nextAchievement();
     }, 10000);
-
     return () => clearInterval(interval);
   }, [currentAchievement]);
 
@@ -98,6 +98,7 @@ const HomePage = ({
 
   return (
     <div className="home-page">
+      {/* existing content */}
       <SectionWrapper id="home" onVisible={() => handleSectionChange('home')}>
         <motion.div
           className="home-section-container"
@@ -114,10 +115,7 @@ const HomePage = ({
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <h4>Hello, I'm</h4>
-                <h1
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
+                <h1 onMouseEnter={textEnter} onMouseLeave={textLeave}>
                   Shimal Akmal D
                 </h1>
                 <div className="type-animation">
@@ -130,7 +128,7 @@ const HomePage = ({
                       ' I enjoy learning things that surprise me',
                       1000,
                       'I love solving problems',
-                      1000
+                      1000,
                     ]}
                     wrapper="h3"
                     cursor={true}
@@ -140,7 +138,6 @@ const HomePage = ({
                   />
                 </div>
               </motion.div>
-
               <motion.div
                 className="home-buttons"
                 initial={{ y: 50, opacity: 0 }}
@@ -169,7 +166,6 @@ const HomePage = ({
                 </motion.a>
               </motion.div>
             </div>
-
             <div className="achievements-slider">
               <div className="carousel-container">
                 <motion.button
@@ -181,7 +177,6 @@ const HomePage = ({
                 >
                   <FiChevronLeft />
                 </motion.button>
-
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentAchievement}
@@ -191,21 +186,25 @@ const HomePage = ({
                     exit={{ opacity: 0, x: -100, rotateY: -20 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
-                    <div className="achievement-glow"></div>
+                    <div className="achievement-glow" />
                     <div className="achievement-image-container">
                       <img
                         src={achievements[currentAchievement].image}
                         alt={achievements[currentAchievement].title}
                         className="achievement-image"
                       />
-                      <div className="achievement-overlay"></div>
+                      <div className="achievement-overlay" />
                     </div>
                     <div className="achievement-content">
                       <div className="achievement-badge">
                         <FiAward />
                       </div>
-                      <h3 className="achievement-title">{achievements[currentAchievement].title}</h3>
-                      <p className="achievement-description">{achievements[currentAchievement].description}</p>
+                      <h3 className="achievement-title">
+                        {achievements[currentAchievement].title}
+                      </h3>
+                      <p className="achievement-description">
+                        {achievements[currentAchievement].description}
+                      </p>
                       <div className="achievement-footer">
                         <span className="achievement-date">
                           {achievements[currentAchievement].date}
@@ -223,7 +222,6 @@ const HomePage = ({
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
                 <motion.button
                   onClick={nextAchievement}
                   className="slider-arrow slider-arrow-right"
@@ -236,30 +234,23 @@ const HomePage = ({
               </div>
             </div>
           </div>
-
           <motion.div
             className="scroll-indicator"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             <span>Scroll Down</span>
-            <div className="arrow"></div>
+            <div className="arrow" />
           </motion.div>
         </motion.div>
       </SectionWrapper>
 
       <SectionWrapper id="about" dark onVisible={() => handleSectionChange('about')}>
-        <About
-          textEnter={textEnter}
-          textLeave={textLeave}
-        />
+        <About textEnter={textEnter} textLeave={textLeave} />
       </SectionWrapper>
 
       <SectionWrapper id="skills" dark onVisible={() => handleSectionChange('skills')}>
-        <Skills
-          textEnter={textEnter}
-          textLeave={textLeave}
-        />
+        <Skills textEnter={textEnter} textLeave={textLeave} />
       </SectionWrapper>
 
       <SectionWrapper id="projects" onVisible={() => handleSectionChange('projects')}>
