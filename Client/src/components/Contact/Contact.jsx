@@ -3,6 +3,8 @@ import { useState } from 'react'
 import emailjs from "@emailjs/browser";
 
 import { FiSend, FiLinkedin, FiGithub, FiTwitter } from 'react-icons/fi'
+import Lottie from 'lottie-react'
+import mailAnimation from '../../assets/Receiving mail.json'
 import './Contact.css'
 
 const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
@@ -53,7 +55,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
   }
 
   return (
-    <motion.div 
+    <motion.div
       className="contact-section"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -61,7 +63,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
       viewport={{ once: true, amount: 0.5 }}
     >
       <div className="contact-container">
-        <motion.h2 
+        <motion.h2
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
           initial={{ x: -50, opacity: 0 }}
@@ -73,7 +75,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
         </motion.h2>
 
         <div className="contact-content">
-          <motion.form 
+          <motion.form
             onSubmit={handleSubmit}
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -135,7 +137,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
             </motion.button>
 
             {submitMessage && (
-              <motion.div 
+              <motion.div
                 className="submit-message"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -145,22 +147,26 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
             )}
           </motion.form>
 
-          <motion.div 
+          <motion.div
             className="contact-info"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
+            <div className="mail-animation-container">
+              <Lottie animationData={mailAnimation} loop={true} />
+            </div>
+
             <h3>Contact Information</h3>
             <p>
-              Feel free to reach out if you're looking for a developer, have a question, 
+              Feel free to reach out if you're looking for a developer, have a question,
               or just want to connect.
             </p>
 
             <div className="info-item">
               <span className="info-label">Email:</span>
-              <a 
+              <a
                 href="mailto:shimalakmal12@gmail.com"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
@@ -175,27 +181,27 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
             </div>
 
             <div className="social-links">
-              <a 
-                href="https://www.linkedin.com/in/shimal-akmal/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/shimal-akmal/"
+                target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={buttonEnter}
                 onMouseLeave={buttonLeave}
               >
                 <FiLinkedin />
               </a>
-              <a 
-                href="https://github.com/Shimal007" 
-                target="_blank" 
+              <a
+                href="https://github.com/Shimal007"
+                target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={buttonEnter}
                 onMouseLeave={buttonLeave}
               >
                 <FiGithub />
               </a>
-              <a 
-                href="https://x.com/Shimal1545925" 
-                target="_blank" 
+              <a
+                href="https://x.com/Shimal1545925"
+                target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={buttonEnter}
                 onMouseLeave={buttonLeave}
@@ -204,9 +210,9 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
               </a>
             </div>
           </motion.div>
-        </div>
-      </div>
-    </motion.div>
+        </div >
+      </div >
+    </motion.div >
   )
 }
 
