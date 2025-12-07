@@ -531,3 +531,9 @@
     height: 12px;
   }
 }
+
+/* Override min-height for specific sections to reduce gaps */
+#about.section-wrapper,
+#skills.section-wrapper {
+  min-height: auto;
+}

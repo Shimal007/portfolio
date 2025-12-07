@@ -32,13 +32,7 @@ const About = ({ textEnter, textLeave }) => {
             viewport={{ once: true }}
           >
             <p>
-              I'm a passionate Full Stack Developer and 2nd-year student with hands-on experience building real-world applications across domains like museum ticketing systems, secure document management, and e-commerce platforms.
-            </p>
-            <p>
-              I specialize in JavaScript technologies (React, Node.js, Express, MongoDB) and have worked with tools like LangChain, LangGraph, Razorpay, WebRTC, and OpenRouteService. Whether it's integrating AI-driven chatbots, building multilingual interfaces, or creating intuitive dashboards, I thrive on turning ideas into impactful solutions.
-            </p>
-            <p>
-              Beyond coding, I'm always exploring new tech stacks, collaborating on hackathons, and working on innovative projects that solve real problems. When I’m not at the keyboard, I enjoy deep conversations, creative brainstorming, and diving into sci-fi concepts and tech trends.
+              I am a Full Stack and GenAI Developer passionate about building intelligent, user-centric applications that combine modern web development with advanced AI capabilities. I work across frontend, backend, deep learning, computer vision, and LLM-based systems, focusing on delivering scalable, real-world solutions. With experience developing award-winning platforms, AI-powered tools, and automation systems, I bring strong problem-solving abilities and end-to-end product thinking to every project. I enjoy working with technologies like FastAPI, Neo4j Knowledge Graphs, Pinecone, LangGraph, and custom-trained models, and I’m driven by a constant desire to learn, innovate, and create seamless AI experiences that make a meaningful impact.
             </p>
 
           </motion.div>
