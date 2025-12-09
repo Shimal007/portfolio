@@ -3,6 +3,7 @@ import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import StarBackground from './components/StarBackground';
 import './LoadingAnimation.css';
+import Chatbot from './components/Chatbot/Chatbot';
 import about from './assets/images/about.png';
 
 // Lazy-load the heavy HomePage component for code-splitting
@@ -48,6 +49,7 @@ function App() {
       {!isLoading && (
         <>
           <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+          <Chatbot />
           <Suspense fallback={<div className="fallback">Loading…</div>}>
             <HomePage
               setActiveSection={handleSetActiveSection}
