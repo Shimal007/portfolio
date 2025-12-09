@@ -324,3 +324,11 @@
 .message.bot .message-content code {
     background: rgba(255, 255, 255, 0.1);
 }
+
+.chatbot-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}

@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaRobot, FaPaperPlane, FaTimes } from 'react-icons/fa';
+import { FaBrain, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
+import { useState, useRef, useEffect } from 'react';
 import remarkGfm from 'remark-gfm';
+import BotAvatar from '../../assets/images/about.jpg';
 import './Chatbot.css';
 
 const Chatbot = () => {
@@ -87,7 +88,7 @@ const Chatbot = () => {
                 <div className="chatbot-window">
                     <div className="chatbot-header">
                         <div className="chatbot-title">
-                            <FaRobot className="chatbot-icon" />
+                            <img src={BotAvatar} alt="Assistant" className="chatbot-icon" />
                             <span>Assistant</span>
                         </div>
                         <button className="chatbot-close" onClick={toggleChat}>
@@ -131,7 +132,7 @@ const Chatbot = () => {
                 </div>
             )}
             <button className="chatbot-toggle" onClick={toggleChat}>
-                {isOpen ? <FaTimes /> : <FaRobot />}
+                {isOpen ? <FaTimes /> : <FaBrain />}
             </button>
         </div>
     );
