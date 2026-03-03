@@ -177,7 +177,7 @@ const Contact = ({ textEnter, textLeave, buttonEnter, buttonLeave }) => {
 
             <div className="info-item">
               <span className="info-label">Phone:</span>
-              <span>+91 9894621913 </span>
+              <span>+91 9894943638 </span>
             </div>
 
             <div className="social-links">
