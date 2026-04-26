@@ -37,43 +37,93 @@ const HomePage = ({
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   const achievements = [
-    {
-      id: 1,
-      title: "Project presentation in hackvotrix 25 hackethon",
-      description: "Built a semantic segmentation model for classifying rivers, trees, buildings, and roads from village aerial imagery and secured a top position at Hacvotrix’25.",
-      date: "June 2025",
-      image: hack,
-    },
-    {
-      id: 2,
-      title: "Project presentation in Exodia 25 hackethon",
-      description: "Built a “Tag Me” face-matching system that finds a person in group photos using one reference image, integrated as a Drive extension.",
-      date: "September 2025",
-      image: exodia,
-    },
-    {
-      id: 3,
-      title: "Project presentation in IBM Gen Ai hackethon",
-      description: "Developed StudyMate, a smart e-learning tool offering secure quizzes with AI proctoring, real-time language translation, automated notes generation, and performance analytics ",
-      date: "August 2025",
-      image: ibm,
-    },
-    {
-      id: 4,
-      title: "Project Presentation 1st Prize",
-      description: "Presented a project on Chatbot based Ticket Booking System and won the 1st prize.",
-      date: "February 2025",
-      image: eie,
-    },
-    {
-      id: 5,
-      title: "CSD 24 Hour Hackathon 2nd Prize",
-      description: "Built an Ayurveda Ecommerce Website with Chatbot for Assistance and won the CSD 24 Hackathon.",
-      date: "March 2025",
-      image: csd,
-    },
-  ];
-
+  {
+    id: 3,
+    title: "IBM Gen AI Hackathon",
+    prize: "1st Prize",
+    project: "StudyMate - AI Study Assistant",
+    description: "AI-powered learning tool with quizzes, proctoring, translation, and analytics.",
+    date: "August 2025",
+    image: ibm,
+  },
+  {
+    id: 4,
+    title: "SRCAS Hackathon 2.0",
+    prize: "1st Prize",
+    project: "LLM for Cyber Issue SOPs",
+    college: "Sri Ramakrishna College of Arts and Science",
+    date: "December 2025",
+    image: srcas,
+  },
+  {
+    id: 5,
+    title: "Cybot Fusion’26",
+    prize: "2nd Prize",
+    project: "Real-Time Phishing Detection",
+    college: "Kongu Engineering College",
+    date: "February 2026",
+    image: cybot,
+  },
+  {
+    id: 6,
+    title: "CSD 24 Hour Hackathon",
+    prize: "2nd Prize",
+    project: "Ayurveda E-commerce with Chatbot",
+    date: "March 2025",
+    image: csd,
+  },
+  {
+    id: 1,
+    title: "Hackvotrix’25 Hackathon",
+    prize: "Top Position",
+    project: "Semantic Segmentation for Aerial Imagery",
+    description: "Classified rivers, trees, buildings, and roads from village aerial imagery.",
+    date: "June 2025",
+    image: hack,
+  },
+  {
+    id: 2,
+    title: "Exodia’25 Hackathon",
+    prize: "1st Prize",
+    project: "Face Album Matching",
+    description: "Built 'Tag Me' system to find a person in group photos using a reference image.",
+    date: "September 2025",
+    image: exodia,
+  },
+  {
+    id: 7,
+    title: "CSI Project Expo",
+    prize: "1st Prize",
+    project: "Museum Ticket Chatbot",
+    date: "April 2025",
+    image: eie,
+  },
+  {
+    id: 8,
+    title: "Newells2K25",
+    prize: "1st Prize",
+    project: "AI Mock Interviewer",
+    date: "October 2025",
+    image: ai,
+  },
+  {
+    id: 9,
+    title: "Eareyes 2K26 ",
+    prize: "1st Prize",
+    project: "Paper & Project Presentation",
+    date: "2026",
+    image: eie1,
+  },
+  {
+    id: 10,
+    title: "GEC club Event",
+    prize: "1st Prize",
+    project: "Paper Presentation",
+    date: "2026",
+    image: gender,
+  }
+];
+  
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
