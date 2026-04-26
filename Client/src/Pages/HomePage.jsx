@@ -16,6 +16,11 @@ import eie from '../assets/images/Eie_1.jpg';
 import hack from '../assets/images/hack.jpg';
 import ibm from '../assets/images/ibm.png';
 import exodia from '../assets/images/exodia.png';
+import ai from '../assets/images/ai.jpg';
+import gender from '../assets/images/gender.jpeg';
+import srcas from '../assets/images/srcas.jpg';
+import cybot from '../assets/images/cybot.jpeg';
+
 
 const HomePage = ({
   textEnter,
