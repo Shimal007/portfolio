@@ -20,20 +20,21 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  /* Increased right padding to keep arrow inside viewport */
+  padding: 0 60px 0 40px;
   min-height: calc(100vh - 200px);
-  gap: 64px;
+  gap: 80px;
   box-sizing: border-box;
 }
 
 .home-content {
-  flex: 1;
-  max-width: 600px;
+  /* Fixed width — does NOT shrink below this */
+  flex: 0 0 420px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-right: 0;
   min-width: 0;
 }
 
@@ -120,17 +121,16 @@
    ========================================= */
 
 .achievements-slider {
-  flex: 0 0 600px;
-  max-width: 600px;
+  /* Takes all remaining space after .home-content */
+  flex: 1;
   min-width: 0;
-  /* Give room for the -20px arrow overlap on each side */
-  margin-left: 60px;
+  max-width: 660px;
+  /* Extra right margin so the right arrow doesn't clip the viewport edge */
   margin-right: 20px;
   position: relative;
   box-sizing: border-box;
 }
 
-/* No padding — arrows overlay the card edges via absolute positioning */
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -182,7 +182,7 @@
 }
 
 .achievement-image {
-  flex: 0 0 50%;
+  flex: 0 0 48%;
   height: 260px;
   overflow: hidden;
   border-radius: 12px;
@@ -224,7 +224,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* KEY FIX: allow this column to shrink and wrap text properly */
   min-width: 0;
   overflow: hidden;
 }
@@ -235,7 +234,6 @@
   color: #fff;
   margin-bottom: 12px;
   line-height: 1.3;
-  /* Allow wrapping — never clip the title */
   white-space: normal;
   word-break: break-word;
 }
@@ -252,7 +250,6 @@
   gap: 10px;
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.88rem;
-  /* Allow wrapping so long college names never get cut */
   white-space: normal;
   word-break: break-word;
   overflow: visible;
@@ -262,12 +259,11 @@
   color: #8b5cf6;
   font-size: 1rem;
   flex-shrink: 0;
-  /* Align icon with first line when text wraps */
   margin-top: 2px;
 }
 
 /* =========================================
-   Arrows — overlap card edges, stay inside viewport
+   Arrows
    ========================================= */
 
 .slider-arrow {
@@ -297,7 +293,6 @@
   transform: translateY(-50%) scale(1.1);
 }
 
-/* Sit half-outside the card but well inside the page */
 .slider-arrow-left {
   left: -20px;
 }
@@ -379,15 +374,14 @@
   }
 
   .home-content {
-    align-items: center;
+    flex: none;
     max-width: 100%;
-    margin-right: 0;
+    align-items: center;
   }
 
   .achievements-slider {
     width: 100%;
     max-width: 600px;
-    flex: none;
     margin: 0 auto;
   }
 }
@@ -451,7 +445,6 @@
     text-align: left;
   }
 
-  /* Hide arrows on mobile — swipe/dots only */
   .slider-arrow {
     display: none !important;
   }
