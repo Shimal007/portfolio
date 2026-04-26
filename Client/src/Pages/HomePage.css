@@ -20,17 +20,16 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  /* Increased right padding to keep arrow inside viewport */
-  padding: 0 60px 0 40px;
+  padding: 0 60px;
   min-height: calc(100vh - 200px);
-  gap: 80px;
+  gap: 60px;
   box-sizing: border-box;
 }
 
 .home-content {
-  /* Fixed width — does NOT shrink below this */
-  flex: 0 0 420px;
-  max-width: 420px;
+  /* Wide enough to never clip the name */
+  flex: 0 0 500px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +44,7 @@
 }
 
 .home-text h1 {
-  font-size: 4rem;
+  font-size: 3.6rem;
   font-weight: 700;
   margin-bottom: 20px;
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
@@ -53,17 +52,21 @@
   background-clip: text;
   color: transparent;
   line-height: 1.2;
-  white-space: nowrap;
-  word-break: keep-all;
+  /* Allow wrapping so the name is never clipped */
+  white-space: normal;
+  word-break: break-word;
   letter-spacing: 0.5px;
 }
 
 .type-animation h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: var(--text-secondary);
   margin-bottom: 30px;
   min-height: 60px;
+  /* Allow wrapping */
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* =========================================
@@ -121,12 +124,9 @@
    ========================================= */
 
 .achievements-slider {
-  /* Takes all remaining space after .home-content */
   flex: 1;
   min-width: 0;
-  max-width: 660px;
-  /* Extra right margin so the right arrow doesn't clip the viewport edge */
-  margin-right: 20px;
+  max-width: 620px;
   position: relative;
   box-sizing: border-box;
 }
@@ -376,7 +376,13 @@
   .home-content {
     flex: none;
     max-width: 100%;
+    width: 100%;
     align-items: center;
+  }
+
+  .home-text h1 {
+    font-size: 3.2rem;
+    white-space: normal;
   }
 
   .achievements-slider {
@@ -405,6 +411,10 @@
     width: 100%;
     text-align: center;
     padding: 12px 24px;
+  }
+
+  .home-text h1 {
+    font-size: 2.8rem;
   }
 
   .achievements-slider {
@@ -456,8 +466,7 @@
 
 @media (max-width: 480px) {
   .home-text h1 {
-    font-size: 2.6rem;
-    white-space: normal;
+    font-size: 2.4rem;
   }
 
   .achievements-slider {
