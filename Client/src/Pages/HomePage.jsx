@@ -20,7 +20,7 @@ import ai from '../assets/images/ai.jpg';
 import gender from '../assets/images/gender.jpeg';
 import srcas from '../assets/images/srcas.jpg';
 import cybot from '../assets/images/cybot.jpeg';
-
+import eie1 from '../assets/images/eie1.jpeg';
 
 const HomePage = ({
   textEnter,
