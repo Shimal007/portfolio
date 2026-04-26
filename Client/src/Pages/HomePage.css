@@ -23,8 +23,6 @@
   padding: 0 40px;
   min-height: calc(100vh - 200px);
   gap: 64px;
-  /* FIX: prevent children from overflowing */
-  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -36,7 +34,7 @@
   justify-content: center;
   align-items: flex-start;
   margin-right: 0;
-  min-width: 0; /* FIX: allow flex shrink */
+  min-width: 0;
 }
 
 .home-text h4 {
@@ -90,7 +88,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Solid Blue Button */
 .btn.primary {
   background-color: #3b82f6;
   color: #ffffff;
@@ -105,7 +102,6 @@
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
 }
 
-/* Outline Blue Button */
 .btn.secondary {
   background-color: transparent;
   color: #3b82f6;
@@ -124,30 +120,28 @@
    ========================================= */
 
 .achievements-slider {
-  flex: 0 0 520px;        /* FIX: reduced from 650px */
-  max-width: 520px;       /* FIX: reduced from 650px */
-  min-width: 0;           /* FIX: allow flex shrink */
-  margin-left: 20px;      /* FIX: reduced from 60px */
-  margin-right: 0;
+  flex: 0 0 600px;
+  max-width: 600px;
+  min-width: 0;
+  /* Give room for the -20px arrow overlap on each side */
+  margin-left: 60px;
+  margin-right: 20px;
   position: relative;
   box-sizing: border-box;
 }
 
+/* No padding — arrows overlay the card edges via absolute positioning */
 .slider-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* FIX: use padding to contain arrows instead of negative positioning */
-  padding: 0 50px;
-  box-sizing: border-box;
 }
 
 .achievements-heading {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -178,7 +172,7 @@
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box; /* FIX: ensure padding doesn't add to width */
+  box-sizing: border-box;
 }
 
 .achievement-card:hover {
@@ -188,8 +182,8 @@
 }
 
 .achievement-image {
-  flex: 0 0 48%;          /* FIX: slightly reduced from 52% */
-  height: 240px;          /* FIX: slightly reduced from 280px */
+  flex: 0 0 50%;
+  height: 260px;
   overflow: hidden;
   border-radius: 12px;
   position: relative;
@@ -216,7 +210,6 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
   will-change: transform;
   filter: contrast(1.02) brightness(1.01);
   border-radius: 8px;
@@ -231,16 +224,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 0; /* FIX: prevent text overflow */
+  /* KEY FIX: allow this column to shrink and wrap text properly */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .achievement-content h3 {
-  font-size: 1.2rem;      /* FIX: slightly reduced from 1.35rem */
+  font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 12px;
-  line-height: 1.25;
-  word-break: break-word; /* FIX: wrap long titles */
+  line-height: 1.3;
+  /* Allow wrapping — never clip the title */
+  white-space: normal;
+  word-break: break-word;
 }
 
 .achievement-details {
@@ -251,31 +248,37 @@
 
 .achievement-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.85rem;     /* FIX: slightly reduced from 0.9rem */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.88rem;
+  /* Allow wrapping so long college names never get cut */
+  white-space: normal;
+  word-break: break-word;
+  overflow: visible;
 }
 
 .info-icon {
   color: #8b5cf6;
-  font-size: 1rem;        /* FIX: slightly reduced from 1.1rem */
+  font-size: 1rem;
   flex-shrink: 0;
+  /* Align icon with first line when text wraps */
+  margin-top: 2px;
 }
 
-/* ARROWS — now contained within padding space */
+/* =========================================
+   Arrows — overlap card edges, stay inside viewport
+   ========================================= */
+
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(30, 32, 60, 0.6);
-  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(20, 22, 50, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.5);
   color: #8b5cf6;
-  width: 38px;            /* FIX: slightly reduced from 42px */
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -283,26 +286,30 @@
   cursor: pointer;
   z-index: 20;
   transition: all 0.3s ease;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .slider-arrow:hover {
   background: #8b5cf6;
   color: white;
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
   transform: translateY(-50%) scale(1.1);
 }
 
-/* FIX: arrows sit inside the 50px padding zone */
+/* Sit half-outside the card but well inside the page */
 .slider-arrow-left {
-  left: 4px;
+  left: -20px;
 }
 
 .slider-arrow-right {
-  right: 4px;
+  right: -20px;
 }
 
-/* Slider Dots */
+/* =========================================
+   Slider Dots
+   ========================================= */
+
 .slider-dots {
   display: flex;
   justify-content: center;
@@ -334,7 +341,7 @@
 }
 
 /* =========================================
-   General & Responsive
+   Scroll Indicator
    ========================================= */
 
 .scroll-indicator {
@@ -359,17 +366,16 @@
 }
 
 /* =========================================
-   Responsive — Tablet (≤1200px)
+   Tablet (≤1200px)
    ========================================= */
 
 @media (max-width: 1200px) {
   .home-hero-content {
     flex-direction: column;
     align-items: center;
-    padding: 60px 20px;   /* FIX: added horizontal padding */
+    padding: 60px 40px;
     text-align: center;
     gap: 50px;
-    overflow: visible;    /* allow normal flow in stacked layout */
   }
 
   .home-content {
@@ -380,16 +386,14 @@
 
   .achievements-slider {
     width: 100%;
-    max-width: 580px;
+    max-width: 600px;
     flex: none;
-    margin-left: 0;
-    margin-right: 0;
     margin: 0 auto;
   }
 }
 
 /* =========================================
-   Responsive — Mobile (≤768px)
+   Mobile (≤768px)
    ========================================= */
 
 @media (max-width: 768px) {
@@ -411,13 +415,14 @@
 
   .achievements-slider {
     width: 100%;
-    max-width: 420px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
-  /* FIX: on mobile, reduce padding so card has more room */
   .slider-wrapper {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .achievement-card {
@@ -446,30 +451,23 @@
     text-align: left;
   }
 
-  /* Hide Arrows on Mobile — swipe instead */
+  /* Hide arrows on mobile — swipe/dots only */
   .slider-arrow {
     display: none !important;
-  }
-
-  /* FIX: no padding needed when arrows are hidden */
-  .slider-wrapper {
-    padding: 0;
   }
 }
 
 /* =========================================
-   Responsive — Small Mobile (≤480px)
+   Small Mobile (≤480px)
    ========================================= */
 
 @media (max-width: 480px) {
   .home-text h1 {
-    font-size: 2.8rem;    /* FIX: scale down heading on small screens */
-    white-space: normal;  /* FIX: allow wrapping on very small screens */
+    font-size: 2.6rem;
+    white-space: normal;
   }
 
   .achievements-slider {
-    max-width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
+    padding: 0 12px;
   }
 }
