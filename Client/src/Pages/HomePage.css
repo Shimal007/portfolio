@@ -27,7 +27,6 @@
 }
 
 .home-content {
-  /* Wide enough to never clip the name */
   flex: 0 0 500px;
   max-width: 500px;
   display: flex;
@@ -52,7 +51,6 @@
   background-clip: text;
   color: transparent;
   line-height: 1.2;
-  /* Allow wrapping so the name is never clipped */
   white-space: normal;
   word-break: break-word;
   letter-spacing: 0.5px;
@@ -64,7 +62,6 @@
   color: var(--text-secondary);
   margin-bottom: 30px;
   min-height: 60px;
-  /* Allow wrapping */
   white-space: normal;
   word-break: break-word;
 }
@@ -126,7 +123,7 @@
 .achievements-slider {
   flex: 1;
   min-width: 0;
-  max-width: 620px;
+  max-width: 680px;
   position: relative;
   box-sizing: border-box;
 }
@@ -157,17 +154,19 @@
   color: #8b5cf6;
 }
 
+/* Card: image takes 55% width, content takes 45% */
 .achievement-card {
   background: rgba(30, 32, 60, 0.85);
   backdrop-filter: blur(14px);
   border-radius: 20px;
-  padding: 24px;
+  /* Reduced padding so image gets more room */
+  padding: 16px;
   border: 1.5px solid rgba(139, 92, 246, 0.15);
   box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.13);
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 16px;
+  align-items: stretch;
+  gap: 20px;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -181,9 +180,12 @@
   transform: translateY(-5px);
 }
 
+/* Image: 55% of card width, fills full card height */
 .achievement-image {
-  flex: 0 0 48%;
-  height: 260px;
+  flex: 0 0 55%;
+  /* Height auto — stretches to match content side */
+  min-height: 280px;
+  height: auto;
   overflow: hidden;
   border-radius: 12px;
   position: relative;
@@ -192,33 +194,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* Image fills the container completely — cover mode for photos */
 .achievement-image img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   transition: transform 0.4s ease;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: high-quality;
-  -ms-interpolation-mode: bicubic;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: transform;
-  filter: contrast(1.02) brightness(1.01);
-  border-radius: 8px;
+  border-radius: 12px;
+  display: block;
 }
 
 .achievement-card:hover .achievement-image img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
+/* Content: takes remaining 45% */
 .achievement-content {
   flex: 1;
   display: flex;
@@ -226,13 +221,14 @@
   justify-content: center;
   min-width: 0;
   overflow: hidden;
+  padding: 8px 4px;
 }
 
 .achievement-content h3 {
   font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   line-height: 1.3;
   white-space: normal;
   word-break: break-word;
@@ -241,7 +237,7 @@
 .achievement-details {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .achievement-info {
@@ -249,7 +245,7 @@
   align-items: flex-start;
   gap: 10px;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   white-space: normal;
   word-break: break-word;
   overflow: visible;
@@ -382,12 +378,11 @@
 
   .home-text h1 {
     font-size: 3.2rem;
-    white-space: normal;
   }
 
   .achievements-slider {
     width: 100%;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
   }
 }
@@ -431,20 +426,26 @@
 
   .achievement-card {
     flex-direction: column;
-    padding: 20px 16px;
+    padding: 16px;
     text-align: center;
     gap: 16px;
   }
 
+  /* On mobile, image is fixed height since there's no content beside it */
   .achievement-image {
     flex: none;
     width: 100%;
-    height: 240px;
-    padding: 8px;
+    min-height: unset;
+    height: 260px;
+  }
+
+  .achievement-image img {
+    object-position: center center;
   }
 
   .achievement-content {
     width: 100%;
+    padding: 0;
   }
 
   .achievement-details {
