@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation';
 import { Canvas } from '@react-three/fiber';
 import { Stars, OrbitControls } from '@react-three/drei';
-import { FiAward, FiCode, FiUsers, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiAward, FiCode, FiUsers, FiChevronLeft, FiChevronRight, FiCalendar, FiTrendingUp, FiBookOpen, FiLayers } from 'react-icons/fi';
 import About from '../components/About/About';
 import Skills from '../components/Skills/Skills';
 import Projects from '../components/Projects/Projects';
@@ -43,6 +43,7 @@ const HomePage = ({
     prize: "1st Prize",
     project: "StudyMate - AI Study Assistant",
     description: "AI-powered learning tool with quizzes, proctoring, translation, and analytics.",
+    college: "IBM",
     date: "August 2025",
     image: ibm,
   },
@@ -57,7 +58,7 @@ const HomePage = ({
   },
   {
     id: 5,
-    title: "Cybot Fusion’26",
+    title: "Cybot Fusion'26",
     prize: "2nd Prize",
     project: "Real-Time Phishing Detection",
     college: "Kongu Engineering College",
@@ -69,24 +70,27 @@ const HomePage = ({
     title: "CSD 24 Hour Hackathon",
     prize: "2nd Prize",
     project: "Ayurveda E-commerce with Chatbot",
+    college: "Kongu Engineering College",
     date: "March 2025",
     image: csd,
   },
   {
     id: 1,
-    title: "Hackvotrix’25 Hackathon",
+    title: "Hackvotrix'25 Hackathon",
     prize: "Top Position",
     project: "Semantic Segmentation for Aerial Imagery",
     description: "Classified rivers, trees, buildings, and roads from village aerial imagery.",
+    college: "Kongu Engineering College",
     date: "June 2025",
     image: hack,
   },
   {
     id: 2,
-    title: "Exodia’25 Hackathon",
+    title: "Exodia'25 Hackathon",
     prize: "1st Prize",
     project: "Face Album Matching",
     description: "Built 'Tag Me' system to find a person in group photos using a reference image.",
+    college: "Kongu Engineering College",
     date: "September 2025",
     image: exodia,
   },
@@ -95,6 +99,7 @@ const HomePage = ({
     title: "CSI Project Expo",
     prize: "1st Prize",
     project: "Museum Ticket Chatbot",
+    college: "Kongu Engineering College",
     date: "April 2025",
     image: eie,
   },
@@ -103,22 +108,25 @@ const HomePage = ({
     title: "Newells2K25",
     prize: "1st Prize",
     project: "AI Mock Interviewer",
+    college: "Kongu Engineering College",
     date: "October 2025",
     image: ai,
   },
   {
     id: 9,
-    title: "Eareyes 2K26 ",
+    title: "Eareyes 2K26",
     prize: "1st Prize",
     project: "Paper & Project Presentation",
+    college: "Kongu Engineering College",
     date: "2026",
     image: eie1,
   },
   {
     id: 10,
-    title: "GEC club Event",
+    title: "GEC Club Event",
     prize: "1st Prize",
     project: "Paper Presentation",
+    college: "Kongu Engineering College",
     date: "2026",
     image: gender,
   }
@@ -221,74 +229,86 @@ const HomePage = ({
                 </motion.a>
               </motion.div>
             </div>
+
+            {/* Achievement Slider Section — UI from second file */}
             <div className="achievements-slider">
-              <div className="carousel-container">
-                <motion.button
+              <h2 className="achievements-heading">
+                <FiAward className="heading-icon" />
+                Achievements
+              </h2>
+
+              <div className="slider-wrapper">
+                {/* Left Arrow */}
+                <button
                   onClick={prevAchievement}
                   className="slider-arrow slider-arrow-left"
-                  whileHover={{ scale: 1.1, x: -5 }}
-                  whileTap={{ scale: 0.9 }}
                   aria-label="Previous achievement"
                 >
                   <FiChevronLeft />
-                </motion.button>
+                </button>
+
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentAchievement}
                     className="achievement-card"
-                    initial={{ opacity: 0, x: 100, rotateY: 20 }}
-                    animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                    exit={{ opacity: 0, x: -100, rotateY: -20 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="achievement-glow" />
-                    <div className="achievement-image-container">
+                    <div className="achievement-image">
                       <img
                         src={achievements[currentAchievement].image}
                         alt={achievements[currentAchievement].title}
-                        className="achievement-image"
                       />
-                      <div className="achievement-overlay" />
                     </div>
                     <div className="achievement-content">
-                      <div className="achievement-badge">
-                        <FiAward />
-                      </div>
-                      <h3 className="achievement-title">
-                        {achievements[currentAchievement].title}
-                      </h3>
-                      <p className="achievement-description">
-                        {achievements[currentAchievement].description}
-                      </p>
-                      <div className="achievement-footer">
-                        <span className="achievement-date">
-                          {achievements[currentAchievement].date}
-                        </span>
-                        <div className="achievement-dots">
-                          {achievements.map((_, index) => (
-                            <span
-                              key={index}
-                              className={`dot ${index === currentAchievement ? 'active' : ''}`}
-                              onClick={() => setCurrentAchievement(index)}
-                            />
-                          ))}
+                      <h3>{achievements[currentAchievement].title}</h3>
+                      <div className="achievement-details">
+                        <div className="achievement-info">
+                          <FiTrendingUp className="info-icon" />
+                          <span>{achievements[currentAchievement].prize}</span>
+                        </div>
+                        <div className="achievement-info">
+                          <FiLayers className="info-icon" />
+                          <span>{achievements[currentAchievement].project}</span>
+                        </div>
+                        <div className="achievement-info">
+                          <FiBookOpen className="info-icon" />
+                          <span>{achievements[currentAchievement].college}</span>
+                        </div>
+                        <div className="achievement-info">
+                          <FiCalendar className="info-icon" />
+                          <span>{achievements[currentAchievement].date}</span>
                         </div>
                       </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-                <motion.button
+
+                {/* Right Arrow */}
+                <button
                   onClick={nextAchievement}
                   className="slider-arrow slider-arrow-right"
-                  whileHover={{ scale: 1.1, x: 5 }}
-                  whileTap={{ scale: 0.9 }}
                   aria-label="Next achievement"
                 >
                   <FiChevronRight />
-                </motion.button>
+                </button>
+              </div>
+
+              {/* Dot Indicators */}
+              <div className="slider-dots">
+                {achievements.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`slider-dot ${currentAchievement === index ? 'active' : ''}`}
+                    onClick={() => setCurrentAchievement(index)}
+                  />
+                ))}
               </div>
             </div>
           </div>
+
           <motion.div
             className="scroll-indicator"
             animate={{ y: [0, 10, 0] }}
