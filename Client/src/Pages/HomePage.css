@@ -27,8 +27,8 @@
 }
 
 .home-content {
-  flex: 0 0 380px;
-  max-width: 380px;
+  flex: 0 0 460px;
+  max-width: 460px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,8 +51,8 @@
   background-clip: text;
   color: transparent;
   line-height: 1.2;
-  white-space: normal;
-  word-break: break-word;
+  white-space: nowrap;
+  word-break: keep-all;
   letter-spacing: 0.5px;
 }
 
@@ -123,7 +123,7 @@
 .achievements-slider {
   flex: 1;
   min-width: 0;
-  max-width: 860px;
+  max-width: 800px;
   position: relative;
   box-sizing: border-box;
 }
