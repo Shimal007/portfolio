@@ -22,13 +22,13 @@
   margin: 0 auto;
   padding: 0 60px;
   min-height: calc(100vh - 200px);
-  gap: 60px;
+  gap: 40px;
   box-sizing: border-box;
 }
 
 .home-content {
-  flex: 0 0 500px;
-  max-width: 500px;
+  flex: 0 0 440px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,7 +123,7 @@
 .achievements-slider {
   flex: 1;
   min-width: 0;
-  max-width: 680px;
+  max-width: 780px;
   position: relative;
   box-sizing: border-box;
 }
@@ -382,7 +382,7 @@
 
   .achievements-slider {
     width: 100%;
-    max-width: 640px;
+    max-width: 740px;
     margin: 0 auto;
   }
 }
