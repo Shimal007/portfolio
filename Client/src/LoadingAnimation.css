@@ -1,18 +1,30 @@
-
+/* LoadingAnimation.css - Clean, Executive & Professional Loading Screen */
 
 .loading-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #0a0a23;
-  /* Dark background matching your theme */
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #080c16;
+  background-image: radial-gradient(circle at 50% 45%, #111827 0%, #080c16 80%, #030712 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  color: white;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Subtle, refined ambient background glow */
+.loading-glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
 
 .loading-container {
@@ -20,153 +32,233 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.6rem;
   width: 100%;
-  max-width: 500px;
+  max-width: 440px;
   padding: 2rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.gradient-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #181a2a;
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.18);
+/* Minimalist Circular Badge & Spinner */
+.loader-badge-container {
   position: relative;
-  overflow: hidden;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.loader-profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 0 18px #8b5cf655;
-  display: block;
-  animation: rotateImg 2.9s linear infinite;
-  will-change: transform;
-}
-
-.gradient-circle::after {
-  content: '';
+/* Smooth conic-gradient spinner ring */
+.loader-spinner-ring {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background: none;
+  inset: 0;
   border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    rgba(59, 130, 246, 0.2) 180deg,
+    #3b82f6 300deg,
+    #8b5cf6 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2.5px));
+  animation: smoothSpin 1.4s cubic-bezier(0.4, 0.1, 0.3, 0.95) infinite;
 }
 
+/* Frosted glass inner core */
+.loader-inner-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Icon */
+.loader-icon {
+  font-size: 1.85rem;
+  color: #60a5fa;
+  filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+  transition: transform 0.3s ease;
+}
+
+/* Typography */
 .loading-text {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.45rem;
 }
 
 .loading-text .name {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.typing-indicator {
-  font-size: 1.2rem;
-  color: #cbd5e1;
+.role-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.progress-container {
-  width: 80%;
+.status-indicator {
+  width: 6px;
   height: 6px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulseIndicator 1.8s ease-in-out infinite;
+}
+
+.role-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Sleek Progress Line */
+.progress-wrapper {
+  width: 210px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
   overflow: hidden;
-  margin-top: 1rem;
+  position: relative;
 }
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  border-radius: 3px;
-  animation: fillBar 2.5s ease-in-out forwards;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8 0%, #6366f1 70%, #8b5cf6 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  animation: fillProgress 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   will-change: width;
 }
 
-/* Add rotation animation */
-@keyframes rotateImg {
+/* Animations */
+@keyframes smoothSpin {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Progress bar fill animation */
-@keyframes fillBar {
-  from {
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+@keyframes pulseIndicator {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fillProgress {
+  0% {
     width: 0%;
   }
-
-  to {
+  50% {
+    width: 60%;
+  }
+  100% {
     width: 100%;
   }
 }
 
-/* Mobile Responsiveness */
+/* Mobile & Tablet Adjustments */
 @media (max-width: 768px) {
-  .gradient-circle {
-    width: 100px;
-    height: 100px;
-  }
-
-  .loader-profile-img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .loading-text .name {
-    font-size: 1.5rem;
-  }
-
-  .typing-indicator {
-    font-size: 1rem;
-  }
-
-  .progress-container {
-    height: 4px;
-  }
-}
-
-@media (max-width: 480px) {
-  .gradient-circle {
+  .loader-badge-container {
     width: 80px;
     height: 80px;
   }
 
-  .loader-profile-img {
-    width: 100%;
-    height: 100%;
+  .loader-inner-circle {
+    width: 68px;
+    height: 68px;
+  }
+
+  .loader-icon {
+    font-size: 1.65rem;
+  }
+
+  .loading-text .name {
+    font-size: 1.45rem;
+  }
+
+  .role-tag {
+    font-size: 0.75rem;
+  }
+
+  .progress-wrapper {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-container {
+    gap: 1.3rem;
+    padding: 1.2rem;
+  }
+
+  .loader-badge-container {
+    width: 74px;
+    height: 74px;
+  }
+
+  .loader-inner-circle {
+    width: 62px;
+    height: 62px;
+  }
+
+  .loader-icon {
+    font-size: 1.5rem;
   }
 
   .loading-text .name {
     font-size: 1.3rem;
   }
 
-  .typing-indicator {
-    font-size: 0.9rem;
-  }
-
-  .loading-container {
-    gap: 1.5rem;
-    padding: 1rem;
+  .progress-wrapper {
+    width: 160px;
   }
 }
